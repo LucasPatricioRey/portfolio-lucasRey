@@ -16,5 +16,23 @@ export const projects = [
     demo: "https://backendloginregisteruser.netlify.app",
     github: "https://github.com/LucasPatricioRey/backend-portafolio",
     featured: false
+  },
+  {
+    title: "Weather App",
+    description:
+      "Aplicación que consume una API de clima para mostrar datos en tiempo real, incluyendo manejo de errores y renderizado dinámico.",
+    technologies: ["HTML", "CSS", "JavaScript", "API REST"],
+    demo: "https://appdelclimaonline.netlify.app",
+    github: "https://github.com/LucasPatricioRey/weatherApp",
+    featured: false
+  },
+  {
+    title: "To-Do List",
+    description:
+      "Aplicación de lista de tareas con manipulación del DOM, filtros dinámicos y persistencia de datos utilizando localStorage.",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    demo: "https://listadetareaspendientes.netlify.app",
+    github: "https://github.com/LucasPatricioRey/to-do-list",
+    featured: false
   }
 ];

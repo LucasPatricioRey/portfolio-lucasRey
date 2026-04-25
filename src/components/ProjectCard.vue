@@ -10,7 +10,10 @@ defineProps({
 
     <h3>{{ project.title }}</h3>
 
-    <p>{{ project.description }}</p>
+    <p class="type" v-if="project.featured">Full Stack Project</p>
+    <p class="type" v-else>Portfolio Project</p>
+
+    <p class="description">{{ project.description }}</p>
 
     <div class="techs">
       <span v-for="tech in project.technologies" :key="tech">
@@ -35,7 +38,8 @@ defineProps({
 }
 
 .project-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
   border-color: rgba(56, 189, 248, 0.45);
 }
 
@@ -54,10 +58,17 @@ defineProps({
 
 h3 {
   font-size: 24px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-p {
+.type {
+  color: #38bdf8;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.description {
   color: #94a3b8;
   line-height: 1.7;
   margin-bottom: 18px;
