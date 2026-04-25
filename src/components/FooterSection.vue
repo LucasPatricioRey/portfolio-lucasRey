@@ -1,18 +1,23 @@
 <template>
   <footer>
-    <p>© 2026 Lucas Rey. Portfolio desarrollado con Vue.js.</p>
+    <p>© 2026 Lucas Rey. Portfolio desarrollado con Vue.js y una identidad visual más personal.</p>
   </footer>
 </template>
 
 <style scoped>
 footer {
-  padding: 28px 8%;
-  background: #020617;
-  border-top: 1px solid rgba(148, 163, 184, 0.16);
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto 28px;
+  padding: 24px 20px;
+  border-top: 1px solid rgba(168, 180, 200, 0.14);
+  color: var(--muted);
   text-align: center;
 }
 
-p {
-  color: #94a3b8;
+@media (max-width: 768px) {
+  footer {
+    width: min(100% - 28px, 1180px);
+    margin-bottom: 20px;
+  }
 }
 </style>

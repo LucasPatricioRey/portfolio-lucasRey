@@ -1,144 +1,311 @@
 <template>
   <section id="home" class="hero">
-    <div class="hero-content">
-      <p class="tag">Portfolio Personal</p>
+    <div class="hero-copy">
+      <p class="eyebrow">Disponible para oportunidades trainee y junior</p>
 
       <h1>
-        Hola, soy <span>Lucas Rey</span>
+        Desarrollo experiencias web con foco en <span>claridad, funcionalidad y crecimiento real</span>.
       </h1>
 
-      <h2>Desarrollador Full Stack Junior</h2>
-
-      <p class="description">
-        Estudiante de Analista de Sistemas enfocado en construir aplicaciones web
-        modernas, funcionales y conectadas a bases de datos reales.
+      <p class="intro">
+        Soy Lucas Rey, estudiante de Analista de Sistemas. Me estoy especializando en desarrollo
+        full stack con proyectos reales, autenticación, APIs, bases de datos y despliegues listos para producción.
       </p>
 
-      <div class="actions">
-        <a href="#projects" class="btn primary">Ver proyectos</a>
-        <a href="/cv-lucas-rey.pdf" class="btn secondary" download>Descargar CV</a>
-        <a href="#contact" class="btn ghost">Contactarme</a>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">Ver proyectos</a>
+        <a href="#contact" class="btn btn-secondary">Hablemos</a>
+        <a href="/cv-lucas-rey.pdf" class="btn btn-ghost" download>Descargar CV</a>
       </div>
+
+      <ul class="hero-points glass-panel">
+        <li>Frontend con Vue, HTML, CSS y JavaScript.</li>
+        <li>Backend con Node.js, Express, JWT y MongoDB.</li>
+        <li>Objetivo actual: sumar experiencia profesional y seguir creciendo rápido.</li>
+      </ul>
     </div>
 
-    <div class="hero-card">
-      <p class="card-label">Disponible</p>
-      <h3>Oportunidades trainee / junior</h3>
-      <p>Vue.js · Node.js · Express · MongoDB</p>
-      <span>Frontend, backend, soporte técnico y análisis de sistemas.</span>
+    <div class="hero-visual">
+      <div class="photo-card glass-panel">
+        <div class="photo-header">
+          <span class="status-dot"></span>
+          <p>Lucas Rey</p>
+          <span class="status-label">Open to work</span>
+        </div>
+
+        <div class="photo-frame">
+          <img src="/lucas-rey-photo.jpeg" alt="Retrato de Lucas Rey" class="profile-photo" />
+        </div>
+
+        <div class="photo-footer">
+          <div>
+            <strong>Full Stack Junior</strong>
+            <p>Desarrollo web, soporte técnico y análisis de sistemas.</p>
+          </div>
+          <img src="/lucas-rey-avatar.png" alt="Avatar ilustrado de Lucas Rey" class="avatar-badge" />
+        </div>
+      </div>
+
+      <div class="hero-note glass-panel">
+        <span>Stack principal</span>
+        <p>Vue.js, Node.js, Express, MongoDB, Git y despliegue en Netlify/Render.</p>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped>
 .hero {
-  min-height: calc(100vh - 74px);
+  min-height: calc(100vh - 118px);
   display: grid;
-  grid-template-columns: 1.4fr 0.9fr;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.95fr);
   align-items: center;
-  gap: 40px;
-  background:
-    radial-gradient(circle at top right, rgba(56, 189, 248, 0.18), transparent 34%),
-    radial-gradient(circle at bottom left, rgba(37, 99, 235, 0.18), transparent 36%);
+  gap: 48px;
+  padding-top: 56px;
 }
 
-.tag {
-  display: inline-block;
-  color: #38bdf8;
-  font-weight: 700;
-  margin-bottom: 16px;
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(93, 214, 255, 0.1);
+  color: var(--accent-cold);
+  font-weight: 800;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #35f08a;
+  box-shadow: 0 0 18px rgba(53, 240, 138, 0.8);
 }
 
 h1 {
-  font-size: clamp(42px, 7vw, 58px);
-  line-height: 1.1;
-  margin-bottom: 12px;
+  max-width: 12ch;
+  font-size: clamp(3rem, 6vw, 5.4rem);
+  line-height: 0.98;
+  margin-bottom: 22px;
 }
 
 h1 span {
-  color: #38bdf8;
+  color: var(--accent-soft);
 }
 
-h2 {
-  color: #cbd5e1;
-  font-size: clamp(22px, 3vw, 28px);
-  margin-bottom: 20px;
+.intro {
+  max-width: 640px;
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.08rem;
 }
 
-.description {
-  max-width: 650px;
-  color: #94a3b8;
-  line-height: 1.8;
-  font-size: 18px;
-}
-
-.actions {
-  margin-top: 30px;
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
+  margin: 28px 0 30px;
 }
 
 .btn {
-  padding: 13px 18px;
-  border-radius: 12px;
+  padding: 14px 20px;
+  border-radius: 14px;
   font-weight: 800;
-  transition: 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .btn:hover {
   transform: translateY(-2px);
 }
 
-.primary {
-  background: #2563eb;
-  color: white;
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #ff9a3c);
+  color: #081120;
 }
 
-.secondary {
-  background: #38bdf8;
-  color: #020617;
+.btn-secondary {
+  background: linear-gradient(135deg, #5dd6ff, #9be7ff);
+  color: #07111f;
 }
 
-.ghost {
-  border: 1px solid #334155;
-  color: #cbd5e1;
+.btn-ghost {
+  border: 1px solid rgba(168, 180, 200, 0.25);
+  color: var(--text);
 }
 
-.hero-card {
-  background: rgba(15, 23, 42, 0.86);
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  padding: 28px;
+.hero-points {
+  list-style: none;
+  display: grid;
+  gap: 14px;
+  padding: 22px;
   border-radius: 24px;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
 }
 
-.card-label {
-  display: inline-block;
-  color: #38bdf8;
-  font-weight: 800;
-  margin-bottom: 12px;
+.hero-points li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
-.hero-card h3 {
-  margin-bottom: 10px;
-  font-size: 24px;
+.hero-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-soft);
 }
 
-.hero-card p:not(.card-label) {
-  color: #38bdf8;
-  font-weight: 800;
+.hero-visual {
+  display: grid;
+  gap: 18px;
+}
+
+.photo-card,
+.hero-note {
+  border-radius: 28px;
+}
+
+.photo-card {
+  padding: 20px;
+}
+
+.photo-header,
+.photo-footer {
+  display: flex;
+  align-items: center;
+}
+
+.photo-header {
+  gap: 10px;
   margin-bottom: 18px;
+  color: var(--muted);
 }
 
-.hero-card span {
-  color: #94a3b8;
-  line-height: 1.6;
+.photo-header p {
+  font-weight: 700;
 }
 
-@media (max-width: 900px) {
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #35f08a;
+  box-shadow: 0 0 16px rgba(53, 240, 138, 0.9);
+}
+
+.status-label {
+  margin-left: auto;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255, 122, 24, 0.16);
+  color: var(--accent-soft);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.photo-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid rgba(168, 180, 200, 0.14);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+}
+
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 36%;
+  background: linear-gradient(180deg, transparent, rgba(7, 17, 31, 0.85));
+}
+
+.profile-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+.photo-footer {
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.photo-footer strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+
+.photo-footer p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.avatar-badge {
+  width: 82px;
+  height: 82px;
+  object-fit: cover;
+  border-radius: 24px;
+  border: 1px solid rgba(168, 180, 200, 0.18);
+  background: rgba(4, 8, 20, 0.85);
+  padding: 6px;
+}
+
+.hero-note {
+  padding: 20px 22px;
+}
+
+.hero-note span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--accent-cold);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.hero-note p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+@media (max-width: 980px) {
   .hero {
     grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  h1 {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    gap: 30px;
+    padding-top: 30px;
+  }
+
+  .photo-card {
+    padding: 14px;
+  }
+
+  .photo-footer {
+    align-items: flex-start;
+  }
+
+  .avatar-badge {
+    width: 68px;
+    height: 68px;
   }
 }
 </style>

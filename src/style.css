@@ -1,3 +1,18 @@
+:root {
+  color-scheme: dark;
+  --bg: #07111f;
+  --bg-soft: #0d1b2f;
+  --panel: rgba(10, 18, 32, 0.82);
+  --panel-strong: #12233d;
+  --line: rgba(148, 163, 184, 0.2);
+  --text: #f8fafc;
+  --muted: #a8b4c8;
+  --accent: #ff7a18;
+  --accent-soft: #ffb86c;
+  --accent-cold: #5dd6ff;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,9 +24,61 @@ html {
 }
 
 body {
-  font-family: "Segoe UI", system-ui, sans-serif;
-  background: #020617;
-  color: #e5e7eb;
+  min-width: 320px;
+  font-family: "Aptos", "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(93, 214, 255, 0.12), transparent 30%),
+    radial-gradient(circle at top right, rgba(255, 122, 24, 0.16), transparent 28%),
+    linear-gradient(180deg, #040814 0%, #07111f 45%, #091624 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 90%);
+  opacity: 0.3;
+}
+
+body,
+button,
+a {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+section {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 96px 0;
+}
+
+h1,
+ h2,
+ h3,
+ .logo {
+  font-family: "Bahnschrift", "Aptos Display", "Segoe UI", sans-serif;
+  letter-spacing: 0.02em;
 }
 
 a {
@@ -20,38 +87,59 @@ a {
 }
 
 button {
-  font-family: inherit;
-}
-
-section {
-  padding: 90px 8%;
+  font: inherit;
 }
 
 .section-title {
-  font-size: 36px;
-  margin-bottom: 18px;
-  color: #ffffff;
+  font-size: clamp(2rem, 2vw + 1.5rem, 3.6rem);
+  margin-bottom: 14px;
 }
 
 .section-subtitle {
-  color: #94a3b8;
-  max-width: 680px;
-  line-height: 1.7;
-  margin-bottom: 36px;
+  max-width: 760px;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 40px;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--accent-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+
+.section-kicker::before {
+  content: "";
+  width: 40px;
+  height: 1px;
+  background: currentColor;
 }
 
 .highlight {
-  color: #38bdf8;
+  color: var(--accent-soft);
 }
 
-
+.glass-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
 
 @media (max-width: 768px) {
   section {
-    padding: 70px 6%;
+    width: min(100% - 28px, 1180px);
+    padding: 80px 0;
   }
 
-  .section-title {
-    font-size: 28px;
+  .section-subtitle {
+    font-size: 1rem;
   }
 }

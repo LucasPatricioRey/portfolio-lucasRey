@@ -9,11 +9,15 @@ import FooterSection from "./components/FooterSection.vue";
 </script>
 
 <template>
-  <Navbar />
-  <HeroSection />
-  <AboutSection />
-  <SkillsSection />
-  <ProjectsSection />
-  <ContactSection />
-  <FooterSection />
+  <div class="app-shell">
+    <Navbar />
+    <main>
+      <HeroSection />
+      <AboutSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <ContactSection />
+    </main>
+    <FooterSection />
+  </div>
 </template>

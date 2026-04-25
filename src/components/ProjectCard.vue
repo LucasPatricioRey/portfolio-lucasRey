@@ -8,13 +8,14 @@ defineProps({
 </script>
 
 <template>
-  <article class="project-card" :class="{ featured: project.featured }">
-    <span v-if="project.featured" class="badge">Proyecto destacado</span>
-
-    <h3>{{ project.title }}</h3>
-
-    <p class="type" v-if="project.featured">Full Stack Project</p>
-    <p class="type" v-else>Portfolio Project</p>
+  <article class="project-card glass-panel" :class="{ featured: project.featured }">
+    <div class="card-top">
+      <div>
+        <span class="eyebrow">{{ project.eyebrow }}</span>
+        <h3>{{ project.title }}</h3>
+      </div>
+      <p class="category">{{ project.category }}</p>
+    </div>
 
     <p class="description">{{ project.description }}</p>
 
@@ -25,89 +26,111 @@ defineProps({
     </div>
 
     <div class="links">
-      <a :href="project.demo" target="_blank" rel="noopener noreferrer">Demo</a>
-      <a :href="project.github" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a :href="project.demo" target="_blank" rel="noopener noreferrer">Ver demo</a>
+      <a :href="project.github" target="_blank" rel="noopener noreferrer" class="secondary-link">Repositorio</a>
     </div>
   </article>
 </template>
 
 <style scoped>
 .project-card {
-  background: #0f172a;
-  border: 1px solid rgba(148, 163, 184, 0.15);
-  padding: 24px;
-  border-radius: 22px;
-  transition: 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px;
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-  border-color: rgba(56, 189, 248, 0.45);
+  transform: translateY(-6px);
+  border-color: rgba(255, 184, 108, 0.38);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
 }
 
 .featured {
   background:
-    radial-gradient(circle at top right, rgba(56, 189, 248, 0.12), transparent 35%),
-    #0f172a;
+    radial-gradient(circle at top right, rgba(255, 122, 24, 0.16), transparent 32%),
+    rgba(10, 18, 32, 0.82);
 }
 
-.badge {
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.eyebrow {
   display: inline-block;
-  color: #38bdf8;
+  margin-bottom: 12px;
+  color: var(--accent-soft);
+  font-size: 0.78rem;
   font-weight: 800;
-  margin-bottom: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 h3 {
-  font-size: 24px;
-  margin-bottom: 8px;
+  font-size: 1.7rem;
 }
 
-.type {
-  color: #38bdf8;
-  font-weight: 700;
-  margin-bottom: 10px;
-  font-size: 14px;
+.category {
+  color: var(--accent-cold);
+  font-size: 0.9rem;
+  font-weight: 800;
+  white-space: nowrap;
 }
 
 .description {
-  color: #94a3b8;
-  line-height: 1.7;
-  margin-bottom: 18px;
+  color: var(--muted);
+  line-height: 1.8;
 }
 
 .techs {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 22px;
+  gap: 10px;
 }
 
 .techs span {
-  background: #020617;
-  color: #cbd5e1;
-  padding: 7px 10px;
+  padding: 8px 10px;
   border-radius: 999px;
-  font-size: 13px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(168, 180, 200, 0.14);
+  color: #e5eef8;
+  font-size: 0.9rem;
   font-weight: 700;
 }
 
 .links {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: auto;
 }
 
 .links a {
-  background: #2563eb;
-  color: white;
-  padding: 10px 14px;
-  border-radius: 10px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), #ff9a3c);
+  color: #081120;
   font-weight: 800;
 }
 
-.links a:last-child {
-  background: transparent;
-  border: 1px solid #334155;
+.secondary-link {
+  background: transparent !important;
+  border: 1px solid rgba(168, 180, 200, 0.2);
+  color: var(--text) !important;
+}
+
+@media (max-width: 640px) {
+  .card-top {
+    flex-direction: column;
+  }
+
+  .category {
+    white-space: normal;
+  }
 }
 </style>
