@@ -1,6 +1,9 @@
 <script setup>
 defineProps({
-  project: Object
+  project: {
+    type: Object,
+    required: true
+  }
 });
 </script>
 
@@ -22,8 +25,8 @@ defineProps({
     </div>
 
     <div class="links">
-      <a :href="project.demo" target="_blank">Demo</a>
-      <a :href="project.github" target="_blank">GitHub</a>
+      <a :href="project.demo" target="_blank" rel="noopener noreferrer">Demo</a>
+      <a :href="project.github" target="_blank" rel="noopener noreferrer">GitHub</a>
     </div>
   </article>
 </template>

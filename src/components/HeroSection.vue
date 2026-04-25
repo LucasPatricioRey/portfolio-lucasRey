@@ -16,14 +16,16 @@
 
       <div class="actions">
         <a href="#projects" class="btn primary">Ver proyectos</a>
-        <a href="#contact" class="btn secondary">Contactarme</a>
+        <a href="/cv-lucas-rey.pdf" class="btn secondary" download>Descargar CV</a>
+        <a href="#contact" class="btn ghost">Contactarme</a>
       </div>
     </div>
 
     <div class="hero-card">
-      <h3>Stack principal</h3>
+      <p class="card-label">Disponible</p>
+      <h3>Oportunidades trainee / junior</h3>
       <p>Vue.js · Node.js · Express · MongoDB</p>
-      <span>Disponible para oportunidades trainee / junior</span>
+      <span>Frontend, backend, soporte técnico y análisis de sistemas.</span>
     </div>
   </section>
 </template>
@@ -48,7 +50,7 @@
 }
 
 h1 {
-  font-size: 58px;
+  font-size: clamp(42px, 7vw, 58px);
   line-height: 1.1;
   margin-bottom: 12px;
 }
@@ -59,7 +61,7 @@ h1 span {
 
 h2 {
   color: #cbd5e1;
-  font-size: 28px;
+  font-size: clamp(22px, 3vw, 28px);
   margin-bottom: 20px;
 }
 
@@ -73,6 +75,7 @@ h2 {
 .actions {
   margin-top: 30px;
   display: flex;
+  flex-wrap: wrap;
   gap: 14px;
 }
 
@@ -80,6 +83,11 @@ h2 {
   padding: 13px 18px;
   border-radius: 12px;
   font-weight: 800;
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
 }
 
 .primary {
@@ -88,6 +96,11 @@ h2 {
 }
 
 .secondary {
+  background: #38bdf8;
+  color: #020617;
+}
+
+.ghost {
   border: 1px solid #334155;
   color: #cbd5e1;
 }
@@ -100,12 +113,19 @@ h2 {
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
 }
 
+.card-label {
+  display: inline-block;
+  color: #38bdf8;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
 .hero-card h3 {
   margin-bottom: 10px;
   font-size: 24px;
 }
 
-.hero-card p {
+.hero-card p:not(.card-label) {
   color: #38bdf8;
   font-weight: 800;
   margin-bottom: 18px;
@@ -119,14 +139,6 @@ h2 {
 @media (max-width: 900px) {
   .hero {
     grid-template-columns: 1fr;
-  }
-
-  h1 {
-    font-size: 42px;
-  }
-
-  h2 {
-    font-size: 22px;
   }
 }
 </style>
