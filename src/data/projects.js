@@ -9,7 +9,7 @@ export const projects = [
     demo: "https://taskflow-vue-nine.vercel.app",
     github: "https://github.com/LucasPatricioRey/taskflow-vue",
     preview:
-      "https://raw.githubusercontent.com/LucasPatricioRey/taskflow-vue/main/public/vistaPrevia.png",
+      "https://raw.githubusercontent.com/LucasPatricioRey/taskflow-vue/main/public/vistaPrevia.jpeg",
     featured: true
   },
   {
