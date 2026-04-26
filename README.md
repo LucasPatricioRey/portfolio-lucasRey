@@ -1,12 +1,14 @@
 # Portfolio Lucas Rey
 
-Portfolio personal desarrollado con Vue 3 y Vite para presentar experiencia, skills y proyectos destacados.
+Portfolio personal desarrollado con Vue 3 y Vite para presentar experiencia, stack y proyectos destacados en una sola landing.
 
-## Stack
+## Demo
 
-- Vue 3
-- Vite
-- CSS
+- Vercel: https://portfolio-lucas-rey.vercel.app
+
+## Vista previa
+
+![Vista previa](./vistaPrevia.png)
 
 ## Secciones
 
@@ -15,6 +17,21 @@ Portfolio personal desarrollado con Vue 3 y Vite para presentar experiencia, ski
 - Skills
 - Proyectos
 - Contacto
+
+## Tecnologias utilizadas
+
+- Vue 3
+- Vite
+- CSS
+- JavaScript
+
+## Objetivo del proyecto
+
+Este portfolio esta pensado para mostrar de forma clara:
+
+- Mi perfil como desarrollador
+- Los proyectos mas representativos que tengo publicados
+- Mi stack actual y el tipo de aplicaciones que estoy construyendo
 
 ## Ejecutar en local
 
