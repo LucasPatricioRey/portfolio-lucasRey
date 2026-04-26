@@ -9,6 +9,16 @@ defineProps({
 
 <template>
   <article class="project-card glass-panel" :class="{ featured: project.featured }">
+    <a
+      class="preview-frame"
+      :href="project.demo"
+      target="_blank"
+      rel="noopener noreferrer"
+      :aria-label="`Abrir demo de ${project.title}`"
+    >
+      <img :src="project.preview" :alt="`Vista previa de ${project.title}`">
+    </a>
+
     <div class="card-top">
       <div>
         <span class="eyebrow">{{ project.eyebrow }}</span>
@@ -53,6 +63,27 @@ defineProps({
   background:
     radial-gradient(circle at top right, rgba(255, 122, 24, 0.16), transparent 32%),
     rgba(10, 18, 32, 0.82);
+}
+
+.preview-frame {
+  display: block;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(168, 180, 200, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  aspect-ratio: 16 / 9;
+}
+
+.preview-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.project-card:hover .preview-frame img {
+  transform: scale(1.03);
 }
 
 .card-top {
