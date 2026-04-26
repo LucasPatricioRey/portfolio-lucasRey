@@ -34,7 +34,7 @@
         </div>
 
         <div class="photo-frame">
-          <img src="/lucas-rey-photo.jpeg" alt="Retrato de Lucas Rey" class="profile-photo" />
+          <img src="/lucas-rey-photo.png" alt="Retrato de Lucas Rey" class="profile-photo" />
         </div>
 
         <div class="photo-footer">
