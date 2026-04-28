@@ -1,5 +1,30 @@
 export const projects = [
   {
+    title: "REDO",
+    eyebrow: "Producto real",
+    category: "Full Stack Platform",
+    description:
+      "Plataforma para peluqueria y barberia con turnos, autenticacion, roles, panel administrativo y una experiencia pensada para un negocio real.",
+    technologies: ["Vue", "Node.js", "Express", "MongoDB", "JWT"],
+    demo: "https://redo-rho-nine.vercel.app",
+    github: "https://github.com/LucasPatricioRey/redo",
+    preview:
+      "https://raw.githubusercontent.com/LucasPatricioRey/redo/main/readme-assets/home.png",
+    featured: true
+  },
+  {
+    title: "FuelCore",
+    eyebrow: "E-commerce",
+    category: "Payments + Dashboard",
+    description:
+      "E-commerce de suplementos y fitness con arquitectura full stack, autenticacion, carrito, roles, base para pagos online y panel administrativo.",
+    technologies: ["Vue", "Pinia", "Node.js", "Express", "MongoDB"],
+    demo: "https://fuelcore-drab.vercel.app",
+    github: "https://github.com/LucasPatricioRey/fuelcore",
+    preview: "",
+    featured: true
+  },
+  {
     title: "TaskFlow",
     eyebrow: "Proyecto destacado",
     category: "Full Stack App",
@@ -23,7 +48,7 @@ export const projects = [
     github: "https://github.com/LucasPatricioRey/backend-portafolio",
     preview:
       "https://raw.githubusercontent.com/LucasPatricioRey/backend-portafolio/main/vistaPrevia.png",
-    featured: false
+    featured: true
   },
   {
     title: "Weather App",

@@ -16,7 +16,15 @@ defineProps({
       rel="noopener noreferrer"
       :aria-label="`Abrir demo de ${project.title}`"
     >
-      <img :src="project.preview" :alt="`Vista previa de ${project.title}`">
+      <img
+        v-if="project.preview"
+        :src="project.preview"
+        :alt="`Vista previa de ${project.title}`"
+      >
+      <div v-else class="preview-placeholder">
+        <span>{{ project.title }}</span>
+        <small>{{ project.category }}</small>
+      </div>
     </a>
 
     <div class="card-top">
@@ -80,6 +88,33 @@ defineProps({
   object-fit: cover;
   display: block;
   transition: transform 0.25s ease;
+}
+
+.preview-placeholder {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  padding: 20px;
+  text-align: center;
+  background:
+    radial-gradient(circle at top right, rgba(255, 122, 24, 0.22), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(93, 214, 255, 0.18), transparent 28%),
+    linear-gradient(135deg, rgba(11, 23, 41, 0.95), rgba(7, 17, 31, 0.9));
+}
+
+.preview-placeholder span {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.preview-placeholder small {
+  color: var(--muted);
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .project-card:hover .preview-frame img {
