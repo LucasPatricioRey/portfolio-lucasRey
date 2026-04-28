@@ -21,7 +21,8 @@ export const projects = [
     technologies: ["Vue", "Pinia", "Node.js", "Express", "MongoDB"],
     demo: "https://fuelcore-drab.vercel.app",
     github: "https://github.com/LucasPatricioRey/fuelcore",
-    preview: "",
+    preview:
+      "https://raw.githubusercontent.com/LucasPatricioRey/fuelcore/main/client/src/assets/banner-fuelcore.png",
     featured: true
   },
   {
