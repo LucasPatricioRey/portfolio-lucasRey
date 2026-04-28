@@ -4,12 +4,13 @@
       <p class="eyebrow">Disponible para oportunidades trainee y junior</p>
 
       <h1>
-        Desarrollo experiencias web con foco en <span>claridad, funcionalidad y crecimiento real</span>.
+        Desarrollador frontend junior con <span>base full stack y proyectos reales</span>.
       </h1>
 
       <p class="intro">
-        Soy Lucas Rey, estudiante de Analista de Sistemas. Me estoy especializando en desarrollo
-        full stack con proyectos reales, autenticación, APIs, bases de datos y despliegues listos para producción.
+        Soy Lucas Rey, estudiante de Analista de Sistemas. Construyo aplicaciones con interfaz,
+        autenticacion, APIs, base de datos y deploy en la nube. Hoy busco una primera oportunidad
+        para aportar rapido y seguir creciendo en equipos de producto.
       </p>
 
       <div class="hero-actions">
@@ -21,7 +22,7 @@
       <ul class="hero-points glass-panel">
         <li>Frontend con Vue, HTML, CSS y JavaScript.</li>
         <li>Backend con Node.js, Express, JWT y MongoDB.</li>
-        <li>Objetivo actual: sumar experiencia profesional y seguir creciendo rápido.</li>
+        <li>Experiencia construyendo proyectos publicados y deployados.</li>
       </ul>
     </div>
 
@@ -42,8 +43,8 @@
 
         <div class="photo-footer">
           <div>
-            <strong>Full Stack Junior</strong>
-            <p>Desarrollo web, soporte técnico y análisis de sistemas.</p>
+            <strong>Frontend Junior + Full Stack Base</strong>
+            <p>Desarrollo web, soporte tecnico y analisis de sistemas.</p>
           </div>
           <img src="/lucas-rey-avatar.png" alt="Avatar ilustrado de Lucas Rey" class="avatar-badge" />
         </div>
@@ -509,16 +510,6 @@ h1 span {
 
   to {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes marqueeDrift {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
   }
 }
 

@@ -1,18 +1,18 @@
 <template>
   <section id="contact" class="contact">
     <p class="section-kicker">Contacto</p>
-    <h2 class="section-title">Si te interesa mi perfil, me encantaría conversar.</h2>
+    <h2 class="section-title">Si te interesa mi perfil para una posicion trainee o junior, conversemos.</h2>
 
     <p class="section-subtitle">
-      Estoy buscando mi primera oportunidad en tecnología para aportar, aprender rápido y sumar experiencia.
-      Si querés ver más de mi trabajo o hablar sobre una posición trainee o junior, te dejo mis canales directos.
+      Estoy buscando una primera oportunidad en tecnologia para seguir creciendo sobre proyectos reales.
+      Si queres conocer mejor mi trabajo o hablar sobre una posicion, te dejo mis canales directos.
     </p>
 
     <div class="contact-layout">
       <article class="glass-panel contact-card main-card">
         <span class="contact-label">Disponible</span>
         <h3>Lucas Rey</h3>
-        <p>Desarrollador full stack junior con interés en desarrollo web, soporte técnico y análisis de sistemas.</p>
+        <p>Desarrollador frontend junior con base full stack, foco en productos web y experiencia construyendo proyectos reales.</p>
         <div class="cta-row">
           <a href="mailto:lucas1998z@hotmail.com" class="primary-link">Enviar email</a>
           <a href="/cv-lucas-rey.pdf" download class="secondary-link">Descargar CV</a>
@@ -22,12 +22,12 @@
       <div class="links-grid">
         <a href="https://github.com/LucasPatricioRey" target="_blank" rel="noopener noreferrer" class="glass-panel social-card">
           <span>GitHub</span>
-          <strong>Ver repositorios</strong>
+          <strong>Ver proyectos y codigo</strong>
         </a>
 
         <a href="https://www.linkedin.com/in/lucas-rey-685b93261/" target="_blank" rel="noopener noreferrer" class="glass-panel social-card">
           <span>LinkedIn</span>
-          <strong>Conectar profesionalmente</strong>
+          <strong>Conectar y ver mi perfil profesional</strong>
         </a>
       </div>
     </div>

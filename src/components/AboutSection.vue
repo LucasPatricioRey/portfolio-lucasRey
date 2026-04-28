@@ -1,40 +1,42 @@
 <template>
   <section id="about" class="about">
-    <p class="section-kicker">Sobre mí</p>
-    <h2 class="section-title">Busco una primera experiencia profesional donde pueda aportar y acelerar mi crecimiento.</h2>
+    <p class="section-kicker">Sobre mi</p>
+    <h2 class="section-title">Busco una primera experiencia profesional para aportar desde el primer dia y seguir creciendo con desafios reales.</h2>
 
     <p class="section-subtitle">
-      Me interesa trabajar en equipos donde pueda seguir aprendiendo, recibir feedback y participar en productos reales.
-      Hoy mi foco está en construir soluciones completas, entender la lógica de negocio y mejorar tanto el frontend como el backend.
+      Hoy me estoy enfocando en construir aplicaciones completas, entender la logica de negocio y
+      trabajar con una mentalidad practica. Me interesa sumar a un equipo donde pueda aportar con
+      ejecucion, seguir aprendiendo y crecer rapido sobre proyectos reales.
     </p>
 
     <div class="about-grid">
       <article class="glass-panel about-card intro-card">
         <span class="card-tag">Perfil</span>
-        <h3>Base técnica con mentalidad práctica</h3>
+        <h3>Frontend junior con base full stack</h3>
         <p>
-          Vengo formándome en desarrollo web con proyectos donde conecto interfaz, autenticación,
-          base de datos, consumo de APIs y despliegue. No me interesa solo “que funcione”, sino entender por qué funciona.
+          Vengo trabajando con proyectos donde conecto interfaz, autenticacion, APIs,
+          base de datos y despliegue. Me interesa construir productos claros, funcionales
+          y bien resueltos, no solo llegar a una demo que funcione.
         </p>
       </article>
 
       <article class="glass-panel about-card">
         <span class="card-tag">Fortalezas</span>
         <ul>
-          <li>Aprendo rápido y me adapto bien a nuevas herramientas.</li>
-          <li>Me siento cómodo armando proyectos full stack de punta a punta.</li>
-          <li>Tengo interés real en soporte técnico, análisis y desarrollo.</li>
+          <li>Puedo construir aplicaciones de punta a punta con frontend y backend.</li>
+          <li>Me adapto rapido y aprendo bien cuando trabajo sobre problemas concretos.</li>
+          <li>Me interesa combinar desarrollo web, soporte tecnico y analisis de sistemas.</li>
         </ul>
       </article>
 
       <article class="glass-panel metric-card">
-        <strong>4+</strong>
-        <p>proyectos publicados y deployados para mostrar trabajo real.</p>
+        <strong>6+</strong>
+        <p>proyectos publicados para mostrar trabajo real y evolucion tecnica.</p>
       </article>
 
       <article class="glass-panel metric-card">
-        <strong>Full stack</strong>
-        <p>frontend, backend, JWT, MongoDB y despliegue en la nube.</p>
+        <strong>Deploy real</strong>
+        <p>apps con autenticacion, APIs, MongoDB y despliegue en la nube.</p>
       </article>
     </div>
   </section>

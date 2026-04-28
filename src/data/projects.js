@@ -4,7 +4,7 @@ export const projects = [
     eyebrow: "Producto real",
     category: "Full Stack Platform",
     description:
-      "Plataforma para peluqueria y barberia con turnos, autenticacion, roles, panel administrativo y una experiencia pensada para un negocio real.",
+      "Sistema para peluqueria y barberia con turnos, roles y panel administrativo pensado como un producto usable para un negocio real.",
     technologies: ["Vue", "Node.js", "Express", "MongoDB", "JWT"],
     demo: "https://redo-rho-nine.vercel.app",
     github: "https://github.com/LucasPatricioRey/redo",
@@ -17,7 +17,7 @@ export const projects = [
     eyebrow: "E-commerce",
     category: "Payments + Dashboard",
     description:
-      "E-commerce de suplementos y fitness con arquitectura full stack, autenticacion, carrito, roles, base para pagos online y panel administrativo.",
+      "E-commerce fitness con catalogo, carrito, roles y base para pagos online y dashboard administrativo.",
     technologies: ["Vue", "Pinia", "Node.js", "Express", "MongoDB"],
     demo: "https://fuelcore-drab.vercel.app",
     github: "https://github.com/LucasPatricioRey/fuelcore",
@@ -29,7 +29,7 @@ export const projects = [
     eyebrow: "Proyecto destacado",
     category: "Full Stack App",
     description:
-      "Aplicacion full stack para gestion de proyectos con autenticacion JWT, rutas protegidas, CRUD completo, dashboard con estadisticas, filtros y busqueda.",
+      "App de gestion de proyectos con autenticacion JWT, CRUD, filtros y dashboard para seguimiento de tareas.",
     technologies: ["Vue", "Node.js", "Express", "MongoDB", "JWT"],
     demo: "https://taskflow-vue-nine.vercel.app",
     github: "https://github.com/LucasPatricioRey/taskflow-vue",
@@ -42,7 +42,7 @@ export const projects = [
     eyebrow: "Autenticacion",
     category: "Login + API",
     description:
-      "Aplicacion full stack con registro, login, JWT, MongoDB y frontend conectado a un backend desplegado.",
+      "Aplicacion full stack con registro, login, JWT y MongoDB conectada a un backend desplegado.",
     technologies: ["Node.js", "Express", "MongoDB", "JavaScript"],
     demo: "https://backend-portafolio-nine.vercel.app",
     github: "https://github.com/LucasPatricioRey/backend-portafolio",
@@ -55,7 +55,7 @@ export const projects = [
     eyebrow: "Consumo de API",
     category: "Frontend Project",
     description:
-      "Aplicacion que consume una API de clima para mostrar datos en tiempo real, incluyendo manejo de errores y renderizado dinamico.",
+      "App de clima con consumo de API, manejo de errores y renderizado dinamico de datos en tiempo real.",
     technologies: ["HTML", "CSS", "JavaScript", "API REST"],
     demo: "https://weather-app-liard-rho-65.vercel.app",
     github: "https://github.com/LucasPatricioRey/weatherApp",
@@ -68,7 +68,7 @@ export const projects = [
     eyebrow: "Logica de interfaz",
     category: "Frontend Project",
     description:
-      "Aplicacion de tareas con manipulacion del DOM, filtros dinamicos y persistencia de datos utilizando localStorage.",
+      "Aplicacion de tareas con manipulacion del DOM, filtros dinamicos y persistencia local con localStorage.",
     technologies: ["HTML", "CSS", "JavaScript"],
     demo: "https://to-do-list-pink-five-91.vercel.app",
     github: "https://github.com/LucasPatricioRey/to-do-list",
