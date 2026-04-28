@@ -62,6 +62,35 @@
   align-items: center;
   gap: 48px;
   padding-top: 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(24px);
+  pointer-events: none;
+}
+
+.hero::before {
+  width: 320px;
+  height: 320px;
+  top: 4%;
+  right: 8%;
+  background: radial-gradient(circle, rgba(93, 214, 255, 0.14), transparent 68%);
+  animation: floatAura 9s ease-in-out infinite;
+}
+
+.hero::after {
+  width: 280px;
+  height: 280px;
+  left: -2%;
+  bottom: 8%;
+  background: radial-gradient(circle, rgba(255, 122, 24, 0.16), transparent 68%);
+  animation: floatAura 11s ease-in-out infinite reverse;
 }
 
 .eyebrow {
@@ -74,6 +103,7 @@
   background: rgba(93, 214, 255, 0.1);
   color: var(--accent-cold);
   font-weight: 800;
+  box-shadow: 0 10px 30px rgba(93, 214, 255, 0.08);
 }
 
 .eyebrow::before {
@@ -95,6 +125,7 @@ h1 {
 
 h1 span {
   color: var(--accent-soft);
+  text-shadow: 0 0 26px rgba(255, 184, 108, 0.12);
 }
 
 .intro {
@@ -118,19 +149,20 @@ h1 span {
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.25s ease;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
+.hero-actions .btn:hover {
+  transform: translateY(-4px) scale(1.02);
 }
 
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), #ff9a3c);
   color: #081120;
-  box-shadow: 0 14px 34px rgba(255, 122, 24, 0.16);
+  box-shadow: 0 18px 42px rgba(255, 122, 24, 0.22);
 }
 
 .btn-secondary {
   background: linear-gradient(135deg, #5dd6ff, #9be7ff);
   color: #07111f;
+  box-shadow: 0 16px 36px rgba(93, 214, 255, 0.18);
 }
 
 .btn-ghost {
@@ -144,6 +176,7 @@ h1 span {
   gap: 14px;
   padding: 22px;
   border-radius: 24px;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.22);
 }
 
 .hero-points li {
@@ -178,6 +211,7 @@ h1 span {
   position: relative;
   padding: 20px;
   overflow: hidden;
+  box-shadow: 0 26px 72px rgba(0, 0, 0, 0.36);
 }
 
 .photo-card::before {
@@ -290,13 +324,14 @@ h1 span {
 }
 
 .photo-card:hover .avatar-badge {
-  transform: translateY(-4px) rotate(-3deg);
+  transform: translateY(-6px) rotate(-4deg) scale(1.04);
 }
 
 .hero-note {
   position: relative;
   padding: 20px 22px;
   overflow: hidden;
+  box-shadow: 0 22px 58px rgba(0, 0, 0, 0.26);
 }
 
 .hero-note::after {
@@ -369,6 +404,19 @@ h1 span {
 
   50% {
     box-shadow: 0 0 0 8px rgba(255, 122, 24, 0.06);
+  }
+}
+
+@keyframes floatAura {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: translate3d(14px, -18px, 0) scale(1.08);
+    opacity: 1;
   }
 }
 

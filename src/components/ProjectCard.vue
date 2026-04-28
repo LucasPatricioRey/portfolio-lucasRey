@@ -58,22 +58,57 @@ defineProps({
   padding: 28px;
   border-radius: 28px;
   border: 1px solid var(--line);
+  overflow: hidden;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-6px);
+  transform:
+    perspective(1200px)
+    rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg))
+    translateY(-10px)
+    scale(1.01);
   border-color: rgba(255, 184, 108, 0.38);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.34);
 }
 
 .featured {
   background:
-    radial-gradient(circle at top right, rgba(255, 122, 24, 0.16), transparent 32%),
+    radial-gradient(circle at top right, rgba(255, 122, 24, 0.22), transparent 32%),
+    radial-gradient(circle at bottom left, rgba(93, 214, 255, 0.12), transparent 28%),
     rgba(10, 18, 32, 0.82);
+  animation: accentPulse 4.8s ease-in-out infinite;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 122, 24, 0.22),
+    rgba(93, 214, 255, 0.18)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .preview-frame {
+  position: relative;
   display: block;
   overflow: hidden;
   border-radius: 18px;
@@ -87,7 +122,7 @@ defineProps({
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.25s ease;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease;
 }
 
 .preview-placeholder {
@@ -118,7 +153,17 @@ defineProps({
 }
 
 .project-card:hover .preview-frame img {
-  transform: scale(1.03);
+  transform: scale(1.08);
+  filter: saturate(1.08);
+}
+
+.preview-frame::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 48%;
+  background: linear-gradient(180deg, transparent, rgba(4, 8, 20, 0.28));
+  pointer-events: none;
 }
 
 .card-top {
@@ -182,6 +227,12 @@ h3 {
   background: linear-gradient(135deg, var(--accent), #ff9a3c);
   color: #081120;
   font-weight: 800;
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.links a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(255, 122, 24, 0.2);
 }
 
 .secondary-link {

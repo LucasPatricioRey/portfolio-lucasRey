@@ -46,6 +46,20 @@ body::before {
   opacity: 0.3;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  inset: -15%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(93, 214, 255, 0.1), transparent 24%),
+    radial-gradient(circle at 82% 14%, rgba(255, 122, 24, 0.12), transparent 22%),
+    radial-gradient(circle at 50% 85%, rgba(255, 184, 108, 0.08), transparent 24%);
+  filter: blur(18px);
+  opacity: 0.7;
+  animation: auroraDrift 18s ease-in-out infinite alternate;
+}
+
 body,
 button,
 a {
@@ -133,6 +147,36 @@ button {
   backdrop-filter: blur(18px);
 }
 
+.interactive-tilt {
+  position: relative;
+  transform-style: preserve-3d;
+  transform:
+    perspective(1200px)
+    rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg));
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  will-change: transform;
+}
+
+.interactive-tilt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255, 255, 255, 0.18), transparent 22%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.interactive-tilt:hover::after {
+  opacity: 1;
+}
+
 .motion-reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -161,6 +205,20 @@ button {
   }
 }
 
+@keyframes auroraDrift {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(2%, 1%, 0) scale(1.04);
+  }
+
+  100% {
+    transform: translate3d(-1%, 2%, 0) scale(1.02);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -178,6 +236,15 @@ button {
   *::before,
   *::after {
     animation: none !important;
+  }
+
+  .interactive-tilt {
+    transform: none;
+    transition: none;
+  }
+
+  .interactive-tilt::after {
+    display: none;
   }
 }
 

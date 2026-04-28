@@ -9,6 +9,29 @@ import ContactSection from "./components/ContactSection.vue";
 import FooterSection from "./components/FooterSection.vue";
 
 let revealObserver;
+let pointerTargets = [];
+
+const handlePointerMove = (event) => {
+  const element = event.currentTarget;
+  const bounds = element.getBoundingClientRect();
+  const offsetX = (event.clientX - bounds.left) / bounds.width;
+  const offsetY = (event.clientY - bounds.top) / bounds.height;
+  const rotateY = (offsetX - 0.5) * 12;
+  const rotateX = (0.5 - offsetY) * 10;
+
+  element.style.setProperty("--tilt-x", `${rotateX.toFixed(2)}deg`);
+  element.style.setProperty("--tilt-y", `${rotateY.toFixed(2)}deg`);
+  element.style.setProperty("--glow-x", `${(offsetX * 100).toFixed(2)}%`);
+  element.style.setProperty("--glow-y", `${(offsetY * 100).toFixed(2)}%`);
+};
+
+const resetPointer = (event) => {
+  const element = event.currentTarget;
+  element.style.setProperty("--tilt-x", "0deg");
+  element.style.setProperty("--tilt-y", "0deg");
+  element.style.setProperty("--glow-x", "50%");
+  element.style.setProperty("--glow-y", "50%");
+};
 
 onMounted(() => {
   const targets = [
@@ -44,10 +67,32 @@ onMounted(() => {
   );
 
   targets.forEach((element) => revealObserver.observe(element));
+
+  pointerTargets = [
+    ...document.querySelectorAll(".project-card"),
+    ...document.querySelectorAll(".photo-card"),
+    ...document.querySelectorAll(".hero-note"),
+    ...document.querySelectorAll(".skill-card"),
+    ...document.querySelectorAll(".about-card")
+  ];
+
+  pointerTargets.forEach((element) => {
+    element.classList.add("interactive-tilt");
+    element.style.setProperty("--tilt-x", "0deg");
+    element.style.setProperty("--tilt-y", "0deg");
+    element.style.setProperty("--glow-x", "50%");
+    element.style.setProperty("--glow-y", "50%");
+    element.addEventListener("pointermove", handlePointerMove);
+    element.addEventListener("pointerleave", resetPointer);
+  });
 });
 
 onBeforeUnmount(() => {
   revealObserver?.disconnect();
+  pointerTargets.forEach((element) => {
+    element.removeEventListener("pointermove", handlePointerMove);
+    element.removeEventListener("pointerleave", resetPointer);
+  });
 });
 </script>
 
