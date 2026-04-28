@@ -56,16 +56,13 @@
         <div class="stack-marquee" aria-hidden="true">
           <span>Vue</span>
           <span>Node.js</span>
+          <span>Express</span>
           <span>MongoDB</span>
           <span>JWT</span>
           <span>APIs</span>
           <span>Vercel</span>
-          <span>Vue</span>
-          <span>Node.js</span>
-          <span>MongoDB</span>
-          <span>JWT</span>
-          <span>APIs</span>
-          <span>Vercel</span>
+          <span>Git</span>
+          <span>Render</span>
         </div>
       </div>
     </div>
