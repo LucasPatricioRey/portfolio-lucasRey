@@ -16,8 +16,9 @@ const handlePointerMove = (event) => {
   const bounds = element.getBoundingClientRect();
   const offsetX = (event.clientX - bounds.left) / bounds.width;
   const offsetY = (event.clientY - bounds.top) / bounds.height;
-  const rotateY = (offsetX - 0.5) * 12;
-  const rotateX = (0.5 - offsetY) * 10;
+  const intensity = Number(element.dataset.tiltIntensity || 1);
+  const rotateY = (offsetX - 0.5) * 12 * intensity;
+  const rotateX = (0.5 - offsetY) * 10 * intensity;
 
   element.style.setProperty("--tilt-x", `${rotateX.toFixed(2)}deg`);
   element.style.setProperty("--tilt-y", `${rotateY.toFixed(2)}deg`);
@@ -78,6 +79,13 @@ onMounted(() => {
 
   pointerTargets.forEach((element) => {
     element.classList.add("interactive-tilt");
+    if (element.classList.contains("project-card")) {
+      element.dataset.tiltIntensity = "1.2";
+    } else if (element.classList.contains("photo-card")) {
+      element.dataset.tiltIntensity = "1.1";
+    } else {
+      element.dataset.tiltIntensity = "0.9";
+    }
     element.style.setProperty("--tilt-x", "0deg");
     element.style.setProperty("--tilt-y", "0deg");
     element.style.setProperty("--glow-x", "50%");

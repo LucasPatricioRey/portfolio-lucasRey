@@ -27,6 +27,9 @@
 
     <div class="hero-visual">
       <div class="photo-card glass-panel">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+
         <div class="photo-header">
           <span class="status-dot"></span>
           <p>Lucas Rey</p>
@@ -49,6 +52,21 @@
       <div class="hero-note glass-panel">
         <span>Stack principal</span>
         <p>Vue.js, Node.js, Express, MongoDB, Git y despliegue en Vercel/Render.</p>
+
+        <div class="stack-marquee" aria-hidden="true">
+          <span>Vue</span>
+          <span>Node.js</span>
+          <span>MongoDB</span>
+          <span>JWT</span>
+          <span>APIs</span>
+          <span>Vercel</span>
+          <span>Vue</span>
+          <span>Node.js</span>
+          <span>MongoDB</span>
+          <span>JWT</span>
+          <span>APIs</span>
+          <span>Vercel</span>
+        </div>
       </div>
     </div>
   </section>
@@ -66,6 +84,11 @@
   overflow: hidden;
 }
 
+.hero-copy {
+  position: relative;
+  z-index: 1;
+}
+
 .hero::before,
 .hero::after {
   content: "";
@@ -76,20 +99,20 @@
 }
 
 .hero::before {
-  width: 320px;
-  height: 320px;
-  top: 4%;
+  width: 380px;
+  height: 380px;
+  top: 2%;
   right: 8%;
-  background: radial-gradient(circle, rgba(93, 214, 255, 0.14), transparent 68%);
+  background: radial-gradient(circle, rgba(93, 214, 255, 0.18), transparent 68%);
   animation: floatAura 9s ease-in-out infinite;
 }
 
 .hero::after {
-  width: 280px;
-  height: 280px;
+  width: 340px;
+  height: 340px;
   left: -2%;
   bottom: 8%;
-  background: radial-gradient(circle, rgba(255, 122, 24, 0.16), transparent 68%);
+  background: radial-gradient(circle, rgba(255, 122, 24, 0.2), transparent 68%);
   animation: floatAura 11s ease-in-out infinite reverse;
 }
 
@@ -211,7 +234,8 @@ h1 span {
   position: relative;
   padding: 20px;
   overflow: hidden;
-  box-shadow: 0 26px 72px rgba(0, 0, 0, 0.36);
+  isolation: isolate;
+  box-shadow: 0 30px 92px rgba(0, 0, 0, 0.42);
 }
 
 .photo-card::before {
@@ -223,6 +247,32 @@ h1 span {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 122, 24, 0.14), transparent 68%);
   pointer-events: none;
+}
+
+.orbit {
+  position: absolute;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orbit-one {
+  inset: 10% -8% auto auto;
+  width: 170px;
+  height: 170px;
+  border-right-color: rgba(93, 214, 255, 0.34);
+  border-top-color: rgba(93, 214, 255, 0.18);
+  animation: orbitSpin 12s linear infinite;
+}
+
+.orbit-two {
+  inset: auto auto 14% -5%;
+  width: 128px;
+  height: 128px;
+  border-left-color: rgba(255, 122, 24, 0.3);
+  border-bottom-color: rgba(255, 184, 108, 0.2);
+  animation: orbitSpin 16s linear infinite reverse;
 }
 
 .photo-header,
@@ -289,11 +339,26 @@ h1 span {
   background: linear-gradient(180deg, transparent, rgba(7, 17, 31, 0.85));
 }
 
+.photo-frame img,
+.photo-frame::before,
+.photo-frame::after,
+.photo-header,
+.photo-footer {
+  position: relative;
+  z-index: 1;
+}
+
 .profile-photo {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: center 18%;
+  transform: scale(1.01);
+  transition: transform 0.45s ease;
+}
+
+.photo-card:hover .profile-photo {
+  transform: scale(1.045);
 }
 
 .photo-footer {
@@ -331,7 +396,7 @@ h1 span {
   position: relative;
   padding: 20px 22px;
   overflow: hidden;
-  box-shadow: 0 22px 58px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
 }
 
 .hero-note::after {
@@ -358,6 +423,25 @@ h1 span {
 .hero-note p {
   color: var(--muted);
   line-height: 1.8;
+}
+
+.stack-marquee {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  margin-top: 18px;
+  animation: marqueeDrift 16s linear infinite;
+}
+
+.stack-marquee span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(168, 180, 200, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+  color: #edf4fb;
+  font-size: 0.84rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 @keyframes statusBlink {
@@ -420,6 +504,26 @@ h1 span {
   }
 }
 
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes marqueeDrift {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 @media (max-width: 980px) {
   .hero {
     grid-template-columns: 1fr;
@@ -435,6 +539,10 @@ h1 span {
   .hero {
     gap: 30px;
     padding-top: 30px;
+  }
+
+  .stack-marquee {
+    animation-duration: 20s;
   }
 
   .photo-card {
