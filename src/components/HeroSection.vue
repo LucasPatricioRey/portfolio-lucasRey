@@ -428,9 +428,10 @@ h1 span {
 .stack-marquee {
   display: flex;
   gap: 10px;
-  width: max-content;
+  width: 100%;
+  max-width: 100%;
   margin-top: 18px;
-  animation: marqueeDrift 16s linear infinite;
+  flex-wrap: wrap;
 }
 
 .stack-marquee span {
@@ -542,7 +543,7 @@ h1 span {
   }
 
   .stack-marquee {
-    animation-duration: 20s;
+    gap: 8px;
   }
 
   .photo-card {
