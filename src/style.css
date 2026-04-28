@@ -133,6 +133,54 @@ button {
   backdrop-filter: blur(18px);
 }
 
+.motion-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(8px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s ease;
+  transition-delay: var(--motion-delay, 0ms);
+}
+
+.motion-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+@keyframes accentPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(255, 122, 24, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 26px rgba(255, 122, 24, 0.16);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .motion-reveal,
+  .motion-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+  }
+}
+
 @media (max-width: 768px) {
   section {
     width: min(100% - 28px, 1180px);

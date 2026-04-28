@@ -48,7 +48,7 @@
 
       <div class="hero-note glass-panel">
         <span>Stack principal</span>
-        <p>Vue.js, Node.js, Express, MongoDB, Git y despliegue en Netlify/Render.</p>
+        <p>Vue.js, Node.js, Express, MongoDB, Git y despliegue en Vercel/Render.</p>
       </div>
     </div>
   </section>
@@ -83,6 +83,7 @@
   border-radius: 50%;
   background: #35f08a;
   box-shadow: 0 0 18px rgba(53, 240, 138, 0.8);
+  animation: statusBlink 2.8s ease-in-out infinite;
 }
 
 h1 {
@@ -114,7 +115,7 @@ h1 span {
   padding: 14px 20px;
   border-radius: 14px;
   font-weight: 800;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.25s ease;
 }
 
 .btn:hover {
@@ -124,6 +125,7 @@ h1 span {
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), #ff9a3c);
   color: #081120;
+  box-shadow: 0 14px 34px rgba(255, 122, 24, 0.16);
 }
 
 .btn-secondary {
@@ -173,7 +175,20 @@ h1 span {
 }
 
 .photo-card {
+  position: relative;
   padding: 20px;
+  overflow: hidden;
+}
+
+.photo-card::before {
+  content: "";
+  position: absolute;
+  inset: -35% auto auto -15%;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 122, 24, 0.14), transparent 68%);
+  pointer-events: none;
 }
 
 .photo-header,
@@ -198,6 +213,7 @@ h1 span {
   border-radius: 50%;
   background: #35f08a;
   box-shadow: 0 0 16px rgba(53, 240, 138, 0.9);
+  animation: statusBlink 2.8s ease-in-out infinite;
 }
 
 .status-label {
@@ -208,6 +224,7 @@ h1 span {
   color: var(--accent-soft);
   font-size: 0.78rem;
   font-weight: 800;
+  animation: labelPulse 5s ease-in-out infinite;
 }
 
 .photo-frame {
@@ -216,6 +233,18 @@ h1 span {
   border-radius: 26px;
   border: 1px solid rgba(168, 180, 200, 0.14);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+}
+
+.photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -60%;
+  width: 38%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: skewX(-18deg);
+  animation: sweepGlow 7.2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .photo-frame::after {
@@ -257,10 +286,28 @@ h1 span {
   border: 1px solid rgba(168, 180, 200, 0.18);
   background: rgba(4, 8, 20, 0.85);
   padding: 6px;
+  transition: transform 0.25s ease;
+}
+
+.photo-card:hover .avatar-badge {
+  transform: translateY(-4px) rotate(-3deg);
 }
 
 .hero-note {
+  position: relative;
   padding: 20px 22px;
+  overflow: hidden;
+}
+
+.hero-note::after {
+  content: "";
+  position: absolute;
+  inset: auto -20% -80% auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(93, 214, 255, 0.12), transparent 70%);
+  pointer-events: none;
 }
 
 .hero-note span {
@@ -276,6 +323,53 @@ h1 span {
 .hero-note p {
   color: var(--muted);
   line-height: 1.8;
+}
+
+@keyframes statusBlink {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  45% {
+    transform: scale(0.88);
+    opacity: 0.72;
+  }
+
+  55% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes sweepGlow {
+  0%,
+  100% {
+    transform: translateX(0) skewX(-18deg);
+    opacity: 0;
+  }
+
+  18%,
+  28% {
+    opacity: 1;
+  }
+
+  42% {
+    transform: translateX(320%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+@keyframes labelPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(255, 122, 24, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(255, 122, 24, 0.06);
+  }
 }
 
 @media (max-width: 980px) {
