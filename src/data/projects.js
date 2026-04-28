@@ -9,7 +9,7 @@ export const projects = [
     demo: "https://redo-rho-nine.vercel.app",
     github: "https://github.com/LucasPatricioRey/redo",
     preview:
-      "https://raw.githubusercontent.com/LucasPatricioRey/redo/main/readme-assets/home.png",
+      "https://raw.githubusercontent.com/LucasPatricioRey/redo/master/readme-assets/home.png",
     featured: true
   },
   {
