@@ -14,7 +14,12 @@
         <h3>Lucas Rey</h3>
         <p>Desarrollador frontend junior con base full stack, foco en productos web y experiencia construyendo proyectos reales.</p>
         <div class="cta-row">
-          <a href="mailto:lucas1998z@hotmail.com" class="primary-link">Enviar email</a>
+          <a
+            href="mailto:lucas1998z@hotmail.com?subject=Contacto%20desde%20tu%20portfolio&body=Hola%20Lucas%2C%20vi%20tu%20portfolio%20y%20queria%20contactarte."
+            class="primary-link"
+          >
+            Enviar email
+          </a>
           <a href="/cv-lucas-rey.pdf" download class="secondary-link">Descargar CV</a>
         </div>
       </article>
