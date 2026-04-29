@@ -15,8 +15,10 @@
         <p>Desarrollador frontend junior con base full stack, foco en productos web y experiencia construyendo proyectos reales.</p>
         <div class="cta-row">
           <a
-            href="mailto:lucas1998z@hotmail.com?subject=Contacto%20desde%20tu%20portfolio&body=Hola%20Lucas%2C%20vi%20tu%20portfolio%20y%20queria%20contactarte."
+            href="https://outlook.live.com/mail/0/deeplink/compose?to=lucas1998z%40hotmail.com&subject=Contacto%20desde%20tu%20portfolio&body=Hola%20Lucas%2C%20vi%20tu%20portfolio%20y%20queria%20contactarte."
             class="primary-link"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Enviar email
           </a>
