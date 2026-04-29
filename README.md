@@ -45,3 +45,7 @@ npm run dev
 ```bash
 npm run build
 ```
+
+## Licencia
+
+MIT
