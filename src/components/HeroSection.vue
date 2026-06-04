@@ -1,69 +1,100 @@
+<script setup>
+import { projects } from "../data/projects";
+
+const showcaseProjects = projects.filter((project) => project.featured).slice(0, 3);
+const primaryProject = showcaseProjects[0];
+</script>
+
 <template>
   <section id="home" class="hero">
     <div class="hero-copy">
       <p class="eyebrow">Disponible para oportunidades trainee y junior</p>
 
       <h1>
-        Desarrollador frontend junior con <span>base full stack y proyectos reales</span>.
+        Frontend junior que ya construye <span>productos full-stack deployados</span>.
       </h1>
 
       <p class="intro">
-        Soy Lucas Rey, estudiante de Analista de Sistemas. Construyo aplicaciones con interfaz,
-        autenticacion, APIs, base de datos y deploy en la nube. Hoy busco una primera oportunidad
-        para aportar rapido y seguir creciendo en equipos de producto.
+        Soy Lucas Rey. Hice apps con turnos, e-commerce, dashboards, autenticacion,
+        APIs y MongoDB. Busco una oportunidad junior para aportar en producto desde
+        el primer dia.
       </p>
 
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">Ver proyectos</a>
-        <a href="#contact" class="btn btn-secondary">Hablemos</a>
+      <div class="hero-actions" aria-label="Acciones principales">
+        <a href="#featured-project" class="btn btn-primary">Ver caso REDO</a>
+        <a href="#projects" class="btn btn-secondary">Ver proyectos</a>
         <a href="/cv-lucas-rey.pdf" class="btn btn-ghost" download>Descargar CV</a>
       </div>
 
-      <ul class="hero-points glass-panel">
-        <li>Frontend con Vue, HTML, CSS y JavaScript.</li>
-        <li>Backend con Node.js, Express, JWT y MongoDB.</li>
-        <li>Experiencia construyendo proyectos publicados y deployados.</li>
+      <ul class="hero-metrics" aria-label="Pruebas rapidas">
+        <li>
+          <strong>6</strong>
+          <span>proyectos publicados</span>
+        </li>
+        <li>
+          <strong>4</strong>
+          <span>apps full-stack</span>
+        </li>
+        <li>
+          <strong>Auth</strong>
+          <span>roles, APIs y MongoDB</span>
+        </li>
       </ul>
     </div>
 
     <div class="hero-visual">
-      <div class="photo-card glass-panel">
-        <div class="orbit orbit-one"></div>
-        <div class="orbit orbit-two"></div>
-
-        <div class="photo-header">
-          <span class="status-dot"></span>
-          <p>Lucas Rey</p>
-          <span class="status-label">Open to work</span>
-        </div>
-
-        <div class="photo-frame">
-          <img src="/lucas-rey-photo.png" alt="Retrato de Lucas Rey" class="profile-photo" />
-        </div>
-
-        <div class="photo-footer">
+      <div class="showcase-panel glass-panel">
+        <div class="showcase-header">
           <div>
-            <strong>Frontend Junior + Full Stack Base</strong>
-            <p>Desarrollo web, soporte tecnico y analisis de sistemas.</p>
+            <span>Showroom</span>
+            <strong>Apps publicadas</strong>
           </div>
-          <img src="/lucas-rey-avatar.png" alt="Avatar ilustrado de Lucas Rey" class="avatar-badge" />
+          <a :href="primaryProject.demo" target="_blank" rel="noopener noreferrer">Demo principal</a>
+        </div>
+
+        <a
+          class="main-preview"
+          :href="primaryProject.demo"
+          target="_blank"
+          rel="noopener noreferrer"
+          :aria-label="`Abrir demo de ${primaryProject.title}`"
+        >
+          <img
+            :src="primaryProject.preview"
+            :alt="`Vista previa de ${primaryProject.title}`"
+            fetchpriority="high"
+          >
+          <div class="preview-overlay">
+            <span>{{ primaryProject.eyebrow }}</span>
+            <h2>{{ primaryProject.title }}</h2>
+            <p>{{ primaryProject.category }}</p>
+          </div>
+        </a>
+
+        <div class="mini-projects" aria-label="Proyectos destacados">
+          <a
+            v-for="project in showcaseProjects"
+            :key="project.title"
+            class="mini-project"
+            :href="project.demo"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img :src="project.preview" :alt="`Miniatura de ${project.title}`" loading="lazy">
+            <span>{{ project.title }}</span>
+            <small>{{ project.category }}</small>
+          </a>
         </div>
       </div>
 
-      <div class="hero-note glass-panel">
-        <span>Stack principal</span>
-        <p>Vue.js, Node.js, Express, MongoDB, Git y despliegue en Vercel/Render.</p>
-
-        <div class="stack-marquee" aria-hidden="true">
-          <span>Vue</span>
-          <span>Node.js</span>
-          <span>Express</span>
-          <span>MongoDB</span>
-          <span>JWT</span>
-          <span>APIs</span>
-          <span>Vercel</span>
-          <span>Git</span>
-          <span>Render</span>
+      <div class="profile-strip glass-panel">
+        <picture>
+          <source srcset="/lucas-rey-avatar.webp" type="image/webp">
+          <img src="/lucas-rey-avatar.png" alt="Avatar ilustrado de Lucas Rey" loading="lazy">
+        </picture>
+        <div>
+          <strong>Lucas Rey</strong>
+          <p>Vue, Node.js, Express, MongoDB, JWT, Vercel y Render.</p>
         </div>
       </div>
     </div>
@@ -72,118 +103,95 @@
 
 <style scoped>
 .hero {
-  min-height: calc(100vh - 118px);
+  min-height: calc(100vh - 112px);
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.95fr);
+  grid-template-columns: minmax(0, 0.96fr) minmax(360px, 1.04fr);
   align-items: center;
-  gap: 48px;
-  padding-top: 56px;
+  gap: 42px;
+  padding-top: 42px;
   position: relative;
-  overflow: hidden;
 }
 
-.hero-copy {
+.hero-copy,
+.hero-visual {
   position: relative;
   z-index: 1;
-}
-
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  border-radius: 999px;
-  filter: blur(24px);
-  pointer-events: none;
-}
-
-.hero::before {
-  width: 380px;
-  height: 380px;
-  top: 2%;
-  right: 8%;
-  background: radial-gradient(circle, rgba(93, 214, 255, 0.18), transparent 68%);
-  animation: floatAura 9s ease-in-out infinite;
-}
-
-.hero::after {
-  width: 340px;
-  height: 340px;
-  left: -2%;
-  bottom: 8%;
-  background: radial-gradient(circle, rgba(255, 122, 24, 0.2), transparent 68%);
-  animation: floatAura 11s ease-in-out infinite reverse;
 }
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 22px;
+  max-width: 100%;
+  margin-bottom: 18px;
   padding: 10px 14px;
+  border: 1px solid rgba(54, 211, 153, 0.2);
   border-radius: 999px;
-  background: rgba(93, 214, 255, 0.1);
-  color: var(--accent-cold);
+  background: rgba(54, 211, 153, 0.09);
+  color: #7ff0c1;
   font-weight: 800;
-  box-shadow: 0 10px 30px rgba(93, 214, 255, 0.08);
 }
 
 .eyebrow::before {
   content: "";
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
   border-radius: 50%;
   background: #35f08a;
-  box-shadow: 0 0 18px rgba(53, 240, 138, 0.8);
-  animation: statusBlink 2.8s ease-in-out infinite;
+  box-shadow: 0 0 18px rgba(53, 240, 138, 0.76);
 }
 
 h1 {
-  max-width: 12ch;
-  font-size: clamp(3rem, 6vw, 5.4rem);
-  line-height: 0.98;
-  margin-bottom: 22px;
+  max-width: 13.4ch;
+  margin-bottom: 20px;
+  font-size: clamp(2.85rem, 4.9vw, 4.85rem);
+  line-height: 0.99;
 }
 
 h1 span {
   color: var(--accent-soft);
-  text-shadow: 0 0 26px rgba(255, 184, 108, 0.12);
 }
 
 .intro {
-  max-width: 640px;
+  max-width: 630px;
   color: var(--muted);
-  line-height: 1.9;
-  font-size: 1.08rem;
+  line-height: 1.82;
+  font-size: 1.06rem;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
-  margin: 28px 0 30px;
+  gap: 12px;
+  margin: 24px 0 24px;
 }
 
 .btn {
-  padding: 14px 20px;
-  border-radius: 14px;
-  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 13px 18px;
+  border-radius: 12px;
+  font-weight: 850;
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.25s ease;
 }
 
-.hero-actions .btn:hover {
-  transform: translateY(-4px) scale(1.02);
+.btn:hover {
+  transform: translateY(-3px);
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), #ff9a3c);
+  background: linear-gradient(135deg, var(--accent), #ffb15f);
   color: #081120;
   box-shadow: 0 18px 42px rgba(255, 122, 24, 0.22);
 }
 
 .btn-secondary {
-  background: linear-gradient(135deg, #5dd6ff, #9be7ff);
-  color: #07111f;
-  box-shadow: 0 16px 36px rgba(93, 214, 255, 0.18);
+  background: rgba(93, 214, 255, 0.12);
+  border: 1px solid rgba(93, 214, 255, 0.24);
+  color: #dff8ff;
 }
 
 .btn-ghost {
@@ -191,360 +199,277 @@ h1 span {
   color: var(--text);
 }
 
-.hero-points {
+.hero-metrics {
   list-style: none;
   display: grid;
-  gap: 14px;
-  padding: 22px;
-  border-radius: 24px;
-  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.22);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
 }
 
-.hero-points li {
-  position: relative;
-  padding-left: 20px;
+.hero-metrics li {
+  min-height: 92px;
+  padding: 16px;
+  border: 1px solid rgba(168, 180, 200, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.hero-metrics strong {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--accent-soft);
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.hero-metrics span {
   color: var(--muted);
-  line-height: 1.7;
-}
-
-.hero-points li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 11px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent-soft);
+  font-size: 0.92rem;
+  line-height: 1.35;
 }
 
 .hero-visual {
   display: grid;
-  gap: 18px;
+  gap: 16px;
 }
 
-.photo-card,
-.hero-note {
-  border-radius: 28px;
+.showcase-panel,
+.profile-strip {
+  border-radius: 24px;
 }
 
-.photo-card {
-  position: relative;
-  padding: 20px;
+.showcase-panel {
+  padding: 18px;
   overflow: hidden;
-  isolation: isolate;
-  box-shadow: 0 30px 92px rgba(0, 0, 0, 0.42);
+  background:
+    linear-gradient(135deg, rgba(255, 122, 24, 0.12), transparent 34%),
+    linear-gradient(225deg, rgba(93, 214, 255, 0.12), transparent 36%),
+    rgba(9, 17, 30, 0.9);
 }
 
-.photo-card::before {
-  content: "";
-  position: absolute;
-  inset: -35% auto auto -15%;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 122, 24, 0.14), transparent 68%);
-  pointer-events: none;
-}
-
-.orbit {
-  position: absolute;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.orbit-one {
-  inset: 10% -8% auto auto;
-  width: 170px;
-  height: 170px;
-  border-right-color: rgba(93, 214, 255, 0.34);
-  border-top-color: rgba(93, 214, 255, 0.18);
-  animation: orbitSpin 12s linear infinite;
-}
-
-.orbit-two {
-  inset: auto auto 14% -5%;
-  width: 128px;
-  height: 128px;
-  border-left-color: rgba(255, 122, 24, 0.3);
-  border-bottom-color: rgba(255, 184, 108, 0.2);
-  animation: orbitSpin 16s linear infinite reverse;
-}
-
-.photo-header,
-.photo-footer {
+.showcase-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 14px;
 }
 
-.photo-header {
-  gap: 10px;
-  margin-bottom: 18px;
-  color: var(--muted);
+.showcase-header span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--accent-cold);
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.photo-header p {
-  font-weight: 700;
+.showcase-header strong {
+  font-size: 1.05rem;
 }
 
-.status-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #35f08a;
-  box-shadow: 0 0 16px rgba(53, 240, 138, 0.9);
-  animation: statusBlink 2.8s ease-in-out infinite;
-}
-
-.status-label {
-  margin-left: auto;
-  padding: 8px 10px;
+.showcase-header a {
+  padding: 9px 12px;
   border-radius: 999px;
   background: rgba(255, 122, 24, 0.16);
   color: var(--accent-soft);
   font-size: 0.78rem;
-  font-weight: 800;
-  animation: labelPulse 5s ease-in-out infinite;
+  font-weight: 850;
 }
 
-.photo-frame {
+.main-preview {
   position: relative;
+  display: block;
   overflow: hidden;
-  border-radius: 26px;
-  border: 1px solid rgba(168, 180, 200, 0.14);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(168, 180, 200, 0.18);
+  border-radius: 18px;
+  aspect-ratio: 16 / 9;
+  background: #111827;
 }
 
-.photo-frame::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 -60%;
-  width: 38%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  transform: skewX(-18deg);
-  animation: sweepGlow 7.2s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.photo-frame::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 36%;
-  background: linear-gradient(180deg, transparent, rgba(7, 17, 31, 0.85));
-}
-
-.photo-frame img,
-.photo-frame::before,
-.photo-frame::after,
-.photo-header,
-.photo-footer {
-  position: relative;
-  z-index: 1;
-}
-
-.profile-photo {
+.main-preview img {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  height: 100%;
   object-fit: cover;
-  object-position: center 18%;
-  transform: scale(1.01);
-  transition: transform 0.45s ease;
+  transition: transform 0.5s ease, filter 0.3s ease;
 }
 
-.photo-card:hover .profile-photo {
-  transform: scale(1.045);
+.main-preview:hover img {
+  transform: scale(1.04);
+  filter: saturate(1.08);
 }
 
-.photo-footer {
-  gap: 16px;
-  margin-top: 16px;
+.preview-overlay {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  max-width: min(82%, 360px);
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background: rgba(4, 8, 20, 0.78);
+  backdrop-filter: blur(12px);
 }
 
-.photo-footer strong {
+.preview-overlay span {
   display: block;
   margin-bottom: 6px;
-  font-size: 1.05rem;
-}
-
-.photo-footer p {
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.avatar-badge {
-  width: 82px;
-  height: 82px;
-  object-fit: cover;
-  border-radius: 24px;
-  border: 1px solid rgba(168, 180, 200, 0.18);
-  background: rgba(4, 8, 20, 0.85);
-  padding: 6px;
-  transition: transform 0.25s ease;
-}
-
-.photo-card:hover .avatar-badge {
-  transform: translateY(-6px) rotate(-4deg) scale(1.04);
-}
-
-.hero-note {
-  position: relative;
-  padding: 20px 22px;
-  overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
-}
-
-.hero-note::after {
-  content: "";
-  position: absolute;
-  inset: auto -20% -80% auto;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(93, 214, 255, 0.12), transparent 70%);
-  pointer-events: none;
-}
-
-.hero-note span {
-  display: block;
-  margin-bottom: 10px;
-  color: var(--accent-cold);
-  font-size: 0.85rem;
-  font-weight: 800;
+  color: var(--accent-soft);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
 }
 
-.hero-note p {
-  color: var(--muted);
-  line-height: 1.8;
+.preview-overlay h2 {
+  margin-bottom: 4px;
+  font-size: 1.7rem;
 }
 
-.stack-marquee {
-  display: flex;
-  gap: 10px;
+.preview-overlay p {
+  color: var(--accent-cold);
+  font-weight: 800;
+}
+
+.mini-projects {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.mini-project {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 7px;
+  min-height: 150px;
+  padding: 10px;
+  border: 1px solid rgba(168, 180, 200, 0.14);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.045);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.mini-project:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 184, 108, 0.32);
+}
+
+.mini-project img {
   width: 100%;
-  max-width: 100%;
-  margin-top: 18px;
-  flex-wrap: wrap;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 11px;
 }
 
-.stack-marquee span {
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(168, 180, 200, 0.16);
-  background: rgba(255, 255, 255, 0.05);
-  color: #edf4fb;
-  font-size: 0.84rem;
-  font-weight: 700;
-  white-space: nowrap;
+.mini-project span {
+  font-weight: 850;
 }
 
-@keyframes statusBlink {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  45% {
-    transform: scale(0.88);
-    opacity: 0.72;
-  }
-
-  55% {
-    transform: scale(1.08);
-    opacity: 1;
-  }
+.mini-project small {
+  color: var(--muted);
+  line-height: 1.35;
 }
 
-@keyframes sweepGlow {
-  0%,
-  100% {
-    transform: translateX(0) skewX(-18deg);
-    opacity: 0;
-  }
-
-  18%,
-  28% {
-    opacity: 1;
-  }
-
-  42% {
-    transform: translateX(320%) skewX(-18deg);
-    opacity: 0;
-  }
+.profile-strip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
 }
 
-@keyframes labelPulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 rgba(255, 122, 24, 0);
-  }
-
-  50% {
-    box-shadow: 0 0 0 8px rgba(255, 122, 24, 0.06);
-  }
+.profile-strip img {
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(168, 180, 200, 0.18);
+  border-radius: 16px;
+  object-fit: cover;
+  background: rgba(4, 8, 20, 0.8);
 }
 
-@keyframes floatAura {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.8;
-  }
-
-  50% {
-    transform: translate3d(14px, -18px, 0) scale(1.08);
-    opacity: 1;
-  }
+.profile-strip strong {
+  display: block;
+  margin-bottom: 4px;
 }
 
-@keyframes orbitSpin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.profile-strip p {
+  color: var(--muted);
+  line-height: 1.5;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1020px) {
   .hero {
     grid-template-columns: 1fr;
     min-height: auto;
   }
 
   h1 {
-    max-width: 100%;
+    max-width: 760px;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 680px) {
   .hero {
-    gap: 30px;
-    padding-top: 30px;
+    gap: 28px;
+    padding-top: 22px;
   }
 
-  .stack-marquee {
-    gap: 8px;
+  .eyebrow {
+    font-size: 0.9rem;
+    line-height: 1.35;
   }
 
-  .photo-card {
+  h1 {
+    font-size: clamp(2.35rem, 12vw, 3.3rem);
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-metrics li {
+    min-height: auto;
+  }
+
+  .showcase-panel {
     padding: 14px;
   }
 
-  .photo-footer {
+  .showcase-header {
     align-items: flex-start;
+    flex-direction: column;
   }
 
-  .avatar-badge {
-    width: 68px;
-    height: 68px;
+  .preview-overlay {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    max-width: none;
+  }
+
+  .preview-overlay h2 {
+    font-size: 1.35rem;
+  }
+
+  .mini-projects {
+    grid-template-columns: 1fr;
+  }
+
+  .mini-project {
+    grid-template-columns: 112px 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    min-height: auto;
+  }
+
+  .mini-project img {
+    grid-row: 1 / span 2;
   }
 }
 </style>

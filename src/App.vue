@@ -36,11 +36,14 @@ const resetPointer = (event) => {
 
 onMounted(() => {
   const targets = [
-    ...document.querySelectorAll("main > section"),
     ...document.querySelectorAll(".hero-copy > *"),
     ...document.querySelectorAll(".hero-visual > *"),
-    ...document.querySelectorAll(".hero-points li"),
+    ...document.querySelectorAll(".hero-metrics li"),
+    ...document.querySelectorAll(".section-kicker"),
+    ...document.querySelectorAll(".section-title"),
+    ...document.querySelectorAll(".section-subtitle"),
     ...document.querySelectorAll(".project-card"),
+    ...document.querySelectorAll(".featured-case > *"),
     ...document.querySelectorAll(".skill-card"),
     ...document.querySelectorAll(".about-card"),
     ...document.querySelectorAll(".metric-card"),
@@ -71,8 +74,10 @@ onMounted(() => {
 
   pointerTargets = [
     ...document.querySelectorAll(".project-card"),
-    ...document.querySelectorAll(".photo-card"),
-    ...document.querySelectorAll(".hero-note"),
+    ...document.querySelectorAll(".showcase-panel"),
+    ...document.querySelectorAll(".mini-project"),
+    ...document.querySelectorAll(".profile-strip"),
+    ...document.querySelectorAll(".featured-case"),
     ...document.querySelectorAll(".skill-card"),
     ...document.querySelectorAll(".about-card")
   ];
@@ -81,7 +86,7 @@ onMounted(() => {
     element.classList.add("interactive-tilt");
     if (element.classList.contains("project-card")) {
       element.dataset.tiltIntensity = "1.2";
-    } else if (element.classList.contains("photo-card")) {
+    } else if (element.classList.contains("showcase-panel")) {
       element.dataset.tiltIntensity = "1.1";
     } else {
       element.dataset.tiltIntensity = "0.9";

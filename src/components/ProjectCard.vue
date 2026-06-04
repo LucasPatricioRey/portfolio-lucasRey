@@ -16,12 +16,13 @@ defineProps({
       rel="noopener noreferrer"
       :aria-label="`Abrir demo de ${project.title}`"
     >
-      <span class="preview-badge">{{ project.featured ? "Destacado" : "Evolucion" }}</span>
+      <span class="preview-badge">{{ project.featured ? "Producto" : "Base tecnica" }}</span>
 
       <img
         v-if="project.preview"
         :src="project.preview"
         :alt="`Vista previa de ${project.title}`"
+        loading="lazy"
       >
 
       <div v-else class="preview-placeholder">
@@ -30,7 +31,7 @@ defineProps({
       </div>
 
       <div class="preview-cta">
-        <span>Explorar proyecto</span>
+        <span>Explorar</span>
       </div>
     </a>
 
@@ -44,6 +45,10 @@ defineProps({
 
     <p class="description">{{ project.description }}</p>
 
+    <ul v-if="project.highlights?.length" class="highlights">
+      <li v-for="item in project.highlights.slice(0, 2)" :key="item">{{ item }}</li>
+    </ul>
+
     <div class="techs">
       <span v-for="tech in project.technologies" :key="tech">
         {{ tech }}
@@ -51,8 +56,8 @@ defineProps({
     </div>
 
     <div class="links">
-      <a :href="project.demo" target="_blank" rel="noopener noreferrer">Ver demo</a>
-      <a :href="project.github" target="_blank" rel="noopener noreferrer" class="secondary-link">Repositorio</a>
+      <a :href="project.demo" target="_blank" rel="noopener noreferrer">Demo</a>
+      <a :href="project.github" target="_blank" rel="noopener noreferrer" class="secondary-link">Codigo</a>
     </div>
   </article>
 </template>
@@ -62,10 +67,10 @@ defineProps({
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding: 28px;
-  border-radius: 28px;
+  gap: 18px;
+  padding: 24px;
   border: 1px solid var(--line);
+  border-radius: 22px;
   overflow: hidden;
   transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -75,18 +80,16 @@ defineProps({
     perspective(1200px)
     rotateX(var(--tilt-x, 0deg))
     rotateY(var(--tilt-y, 0deg))
-    translateY(-14px)
-    scale(1.015);
+    translateY(-10px);
   border-color: rgba(255, 184, 108, 0.38);
-  box-shadow: 0 34px 84px rgba(0, 0, 0, 0.38);
+  box-shadow: 0 30px 72px rgba(0, 0, 0, 0.36);
 }
 
 .featured {
   background:
-    radial-gradient(circle at top right, rgba(255, 122, 24, 0.24), transparent 32%),
-    radial-gradient(circle at bottom left, rgba(93, 214, 255, 0.16), transparent 28%),
+    linear-gradient(135deg, rgba(255, 122, 24, 0.12), transparent 36%),
+    linear-gradient(225deg, rgba(93, 214, 255, 0.1), transparent 38%),
     rgba(10, 18, 32, 0.82);
-  animation: accentPulse 4.8s ease-in-out infinite;
 }
 
 .project-card::before {
@@ -119,25 +122,25 @@ defineProps({
   position: relative;
   display: block;
   overflow: hidden;
-  border-radius: 18px;
   border: 1px solid rgba(168, 180, 200, 0.14);
+  border-radius: 16px;
   background: rgba(255, 255, 255, 0.04);
   aspect-ratio: 16 / 9;
 }
 
 .preview-badge {
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: 12px;
+  left: 12px;
   z-index: 2;
-  padding: 8px 12px;
+  padding: 8px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 999px;
   background: rgba(5, 11, 24, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.16);
   color: #f7fbff;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   backdrop-filter: blur(12px);
 }
@@ -159,15 +162,13 @@ defineProps({
   padding: 20px;
   text-align: center;
   background:
-    radial-gradient(circle at top right, rgba(255, 122, 24, 0.22), transparent 30%),
-    radial-gradient(circle at bottom left, rgba(93, 214, 255, 0.18), transparent 28%),
     linear-gradient(135deg, rgba(11, 23, 41, 0.95), rgba(7, 17, 31, 0.9));
 }
 
 .preview-placeholder span {
-  font-size: 1.35rem;
-  font-weight: 800;
   color: var(--text);
+  font-size: 1.35rem;
+  font-weight: 850;
 }
 
 .preview-placeholder small {
@@ -178,7 +179,7 @@ defineProps({
 }
 
 .project-card:hover .preview-frame img {
-  transform: scale(1.1);
+  transform: scale(1.08);
   filter: saturate(1.12);
 }
 
@@ -186,31 +187,15 @@ defineProps({
   content: "";
   position: absolute;
   inset: auto 0 0;
-  height: 58%;
-  background: linear-gradient(180deg, transparent, rgba(4, 8, 20, 0.42));
+  height: 55%;
+  background: linear-gradient(180deg, transparent, rgba(4, 8, 20, 0.44));
   pointer-events: none;
-}
-
-.preview-frame::before {
-  content: "";
-  position: absolute;
-  inset: -20% auto auto -30%;
-  width: 42%;
-  height: 160%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
-  transform: rotate(14deg) translateX(-140%);
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.project-card:hover .preview-frame::before {
-  transform: rotate(14deg) translateX(360%);
 }
 
 .preview-cta {
   position: absolute;
-  inset: auto 16px 16px auto;
+  right: 14px;
+  bottom: 14px;
   z-index: 2;
   transform: translateY(10px);
   opacity: 0;
@@ -220,19 +205,13 @@ defineProps({
 .preview-cta span {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
+  padding: 9px 12px;
   border-radius: 999px;
   background: rgba(255, 122, 24, 0.92);
   color: #07111f;
-  font-size: 0.82rem;
-  font-weight: 800;
+  font-size: 0.8rem;
+  font-weight: 850;
   box-shadow: 0 16px 30px rgba(255, 122, 24, 0.28);
-}
-
-.preview-cta span::after {
-  content: "↗";
-  font-size: 0.92rem;
 }
 
 .project-card:hover .preview-cta {
@@ -241,51 +220,72 @@ defineProps({
 }
 
 .card-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
+  display: grid;
+  gap: 10px;
 }
 
 .eyebrow {
   display: inline-block;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   color: var(--accent-soft);
-  font-size: 0.78rem;
-  font-weight: 800;
+  font-size: 0.74rem;
+  font-weight: 850;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 h3 {
-  font-size: 1.7rem;
+  font-size: 1.55rem;
 }
 
 .category {
   color: var(--accent-cold);
   font-size: 0.9rem;
-  font-weight: 800;
-  white-space: nowrap;
+  font-weight: 850;
 }
 
-.description {
+.description,
+.highlights li {
   color: var(--muted);
-  line-height: 1.8;
+  line-height: 1.7;
+}
+
+.highlights {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+}
+
+.highlights li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.highlights li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-green);
 }
 
 .techs {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 9px;
 }
 
 .techs span {
   padding: 8px 10px;
+  border: 1px solid rgba(168, 180, 200, 0.14);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(168, 180, 200, 0.14);
   color: #e5eef8;
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-size: 0.86rem;
+  font-weight: 800;
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
@@ -298,16 +298,16 @@ h3 {
 .links {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
   margin-top: auto;
 }
 
 .links a {
-  padding: 12px 16px;
+  padding: 11px 15px;
   border-radius: 12px;
-  background: linear-gradient(135deg, var(--accent), #ff9a3c);
+  background: linear-gradient(135deg, var(--accent), #ffb15f);
   color: #081120;
-  font-weight: 800;
+  font-weight: 850;
   transition: transform 0.2s ease, box-shadow 0.25s ease;
 }
 
@@ -318,17 +318,14 @@ h3 {
 
 .secondary-link {
   background: transparent !important;
-  border: 1px solid rgba(168, 180, 200, 0.2);
+  border: 1px solid rgba(168, 180, 200, 0.22);
   color: var(--text) !important;
 }
 
 @media (max-width: 640px) {
-  .card-top {
-    flex-direction: column;
-  }
-
-  .category {
-    white-space: normal;
+  .project-card {
+    padding: 18px;
+    border-radius: 20px;
   }
 }
 </style>

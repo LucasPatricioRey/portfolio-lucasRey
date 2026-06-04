@@ -59,19 +59,57 @@ nav a:hover {
 
 @media (max-width: 768px) {
   .navbar {
-    top: 10px;
+    top: 8px;
     width: min(100% - 20px, 1180px);
-    padding: 14px;
-    flex-direction: column;
-    gap: 12px;
+    padding: 10px 12px;
+    gap: 10px;
+    border-radius: 18px;
+  }
+
+  .logo {
+    flex: 0 0 auto;
+    font-size: 1.02rem;
   }
 
   nav {
-    justify-content: center;
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  nav::-webkit-scrollbar {
+    display: none;
   }
 
   nav a {
-    padding: 8px 12px;
+    flex: 0 0 auto;
+    padding: 8px 9px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 420px) {
+  .navbar {
+    width: min(100% - 16px, 1180px);
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 0.96rem;
+  }
+
+  nav {
+    justify-content: flex-end;
+    gap: 2px;
+  }
+
+  nav a {
+    padding: 7px 6px;
+    font-size: 0.72rem;
   }
 }
 </style>
