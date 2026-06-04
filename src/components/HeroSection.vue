@@ -10,6 +10,17 @@ const primaryProject = showcaseProjects[0];
     <div class="hero-copy">
       <p class="eyebrow">Disponible para oportunidades trainee y junior</p>
 
+      <div class="mobile-profile glass-panel">
+        <picture>
+          <source srcset="/lucas-rey-photo.webp" type="image/webp">
+          <img src="/lucas-rey-photo.png" alt="Retrato de Lucas Rey">
+        </picture>
+        <div>
+          <strong>Lucas Rey</strong>
+          <span>Frontend junior + demos comerciales</span>
+        </div>
+      </div>
+
       <h1>
         Frontend junior que ya construye <span>productos full-stack deployados</span>.
       </h1>
@@ -28,16 +39,16 @@ const primaryProject = showcaseProjects[0];
 
       <ul class="hero-metrics" aria-label="Pruebas rapidas">
         <li>
-          <strong>6</strong>
+          <strong>9</strong>
           <span>proyectos publicados</span>
         </li>
         <li>
-          <strong>4</strong>
+          <strong>5</strong>
           <span>apps full-stack</span>
         </li>
         <li>
-          <strong>Auth</strong>
-          <span>roles, APIs y MongoDB</span>
+          <strong>3</strong>
+          <span>demos comerciales vendibles</span>
         </li>
       </ul>
     </div>
@@ -69,6 +80,17 @@ const primaryProject = showcaseProjects[0];
             <h2>{{ primaryProject.title }}</h2>
             <p>{{ primaryProject.category }}</p>
           </div>
+
+          <div class="creator-chip">
+            <picture>
+              <source srcset="/lucas-rey-photo.webp" type="image/webp">
+              <img src="/lucas-rey-photo.png" alt="Retrato de Lucas Rey">
+            </picture>
+            <div>
+              <span>Creado por</span>
+              <strong>Lucas Rey</strong>
+            </div>
+          </div>
         </a>
 
         <div class="mini-projects" aria-label="Proyectos destacados">
@@ -89,12 +111,12 @@ const primaryProject = showcaseProjects[0];
 
       <div class="profile-strip glass-panel">
         <picture>
-          <source srcset="/lucas-rey-avatar.webp" type="image/webp">
-          <img src="/lucas-rey-avatar.png" alt="Avatar ilustrado de Lucas Rey" loading="lazy">
+          <source srcset="/lucas-rey-photo.webp" type="image/webp">
+          <img src="/lucas-rey-photo.png" alt="Retrato de Lucas Rey" loading="lazy">
         </picture>
         <div>
           <strong>Lucas Rey</strong>
-          <p>Vue, Node.js, Express, MongoDB, JWT, Vercel y Render.</p>
+          <p>Frontend junior con base full-stack y demos comerciales listas para mostrar.</p>
         </div>
       </div>
     </div>
@@ -140,6 +162,10 @@ const primaryProject = showcaseProjects[0];
   border-radius: 50%;
   background: #35f08a;
   box-shadow: 0 0 18px rgba(53, 240, 138, 0.76);
+}
+
+.mobile-profile {
+  display: none;
 }
 
 h1 {
@@ -304,7 +330,7 @@ h1 span {
   position: absolute;
   left: 18px;
   bottom: 18px;
-  max-width: min(82%, 360px);
+  max-width: min(58%, 300px);
   padding: 14px 16px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 16px;
@@ -330,6 +356,45 @@ h1 span {
 .preview-overlay p {
   color: var(--accent-cold);
   font-weight: 800;
+}
+
+.creator-chip {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 220px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 18px;
+  background: rgba(4, 8, 20, 0.8);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+}
+
+.creator-chip img {
+  width: 54px;
+  height: 54px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+.creator-chip span {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--accent-cold);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.creator-chip strong {
+  font-size: 0.94rem;
 }
 
 .mini-projects {
@@ -385,6 +450,7 @@ h1 span {
   border: 1px solid rgba(168, 180, 200, 0.18);
   border-radius: 16px;
   object-fit: cover;
+  object-position: center 18%;
   background: rgba(4, 8, 20, 0.8);
 }
 
@@ -413,6 +479,35 @@ h1 span {
   .hero {
     gap: 28px;
     padding-top: 22px;
+  }
+
+  .mobile-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    max-width: 100%;
+    margin: -2px 0 16px;
+    padding: 10px 12px;
+    border-radius: 18px;
+  }
+
+  .mobile-profile img {
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    object-fit: cover;
+    object-position: center 18%;
+  }
+
+  .mobile-profile strong {
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .mobile-profile span {
+    color: var(--muted);
+    font-size: 0.84rem;
   }
 
   .eyebrow {
@@ -449,12 +544,19 @@ h1 span {
   .preview-overlay {
     left: 12px;
     right: 12px;
-    bottom: 12px;
+    bottom: 86px;
     max-width: none;
   }
 
   .preview-overlay h2 {
     font-size: 1.35rem;
+  }
+
+  .creator-chip {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    max-width: none;
   }
 
   .mini-projects {

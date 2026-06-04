@@ -4,7 +4,8 @@ import { projects } from "../data/projects";
 
 const featuredCase = projects.find((project) => project.title === "REDO") ?? projects[0];
 const productProjects = projects.filter((project) => project.featured && project.title !== featuredCase.title);
-const learningProjects = projects.filter((project) => !project.featured);
+const commercialProjects = projects.filter((project) => project.type === "commercial");
+const learningProjects = projects.filter((project) => project.type === "learning");
 </script>
 
 <template>
@@ -58,6 +59,23 @@ const learningProjects = projects.filter((project) => !project.featured);
       <div class="projects-grid">
         <ProjectCard
           v-for="project in productProjects"
+          :key="project.title"
+          :project="project"
+        />
+      </div>
+    </div>
+
+    <div class="projects-subsection commercial-showcase">
+      <p class="section-kicker">Demos comerciales</p>
+      <h3 class="subsection-title">Paginas listas para vender: barberia, restaurante y tienda de ropa.</h3>
+      <p class="section-subtitle subsection-copy">
+        Estas demos muestran otra parte de mi perfil: diseño visual, experiencia mobile,
+        contenido comercial, conversion por WhatsApp y presentaciones vendibles para clientes reales.
+      </p>
+
+      <div class="projects-grid commercial-grid">
+        <ProjectCard
+          v-for="project in commercialProjects"
           :key="project.title"
           :project="project"
         />
@@ -245,6 +263,22 @@ const learningProjects = projects.filter((project) => !project.featured);
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.commercial-showcase {
+  padding: 32px;
+  border: 1px solid rgba(255, 184, 108, 0.16);
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(255, 122, 24, 0.1), transparent 34%),
+    linear-gradient(225deg, rgba(93, 214, 255, 0.08), transparent 36%),
+    rgba(255, 255, 255, 0.025);
+}
+
+.commercial-grid :deep(.project-card) {
+  background:
+    linear-gradient(135deg, rgba(255, 184, 108, 0.1), transparent 38%),
+    rgba(10, 18, 32, 0.86);
+}
+
 .secondary-grid :deep(.project-card) {
   padding: 24px;
 }
@@ -262,6 +296,11 @@ const learningProjects = projects.filter((project) => !project.featured);
     padding: 16px;
     border-radius: 22px;
     scroll-margin-top: 110px;
+  }
+
+  .commercial-showcase {
+    padding: 18px;
+    border-radius: 22px;
   }
 
   .case-preview {

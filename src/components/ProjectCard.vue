@@ -16,7 +16,9 @@ defineProps({
       rel="noopener noreferrer"
       :aria-label="`Abrir demo de ${project.title}`"
     >
-      <span class="preview-badge">{{ project.featured ? "Producto" : "Base tecnica" }}</span>
+      <span class="preview-badge">
+        {{ project.type === "commercial" ? "Demo comercial" : project.featured ? "Producto" : "Base tecnica" }}
+      </span>
 
       <img
         v-if="project.preview"
@@ -56,8 +58,18 @@ defineProps({
     </div>
 
     <div class="links">
-      <a :href="project.demo" target="_blank" rel="noopener noreferrer">Demo</a>
-      <a :href="project.github" target="_blank" rel="noopener noreferrer" class="secondary-link">Codigo</a>
+      <a :href="project.demo" target="_blank" rel="noopener noreferrer">
+        {{ project.demoLabel || "Demo" }}
+      </a>
+      <a
+        v-if="project.github !== project.demo"
+        :href="project.github"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="secondary-link"
+      >
+        Codigo
+      </a>
     </div>
   </article>
 </template>

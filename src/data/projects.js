@@ -68,6 +68,61 @@ export const projects = [
     featured: true
   },
   {
+    title: "NOVA Studio",
+    eyebrow: "Demo comercial",
+    category: "Barberia + Estetica",
+    description:
+      "Landing premium para barberia y estetica con servicios, precios, galeria, turnos simulados y contacto por WhatsApp.",
+    highlights: [
+      "Simulador de turnos con servicio, profesional, dia y horario.",
+      "Galeria, promos, opiniones, FAQ y contacto comercial.",
+      "Demo pensada para vender webs a negocios locales."
+    ],
+    technologies: ["React", "TypeScript", "Vite", "CSS"],
+    demo: "https://github.com/LucasPatricioRey/demo-nova-studio",
+    demoLabel: "Ver repo",
+    github: "https://github.com/LucasPatricioRey/demo-nova-studio",
+    preview: "/projects/nova-studio.webp",
+    featured: false,
+    type: "commercial"
+  },
+  {
+    title: "Ambar Cafe & Brunch",
+    eyebrow: "Demo comercial",
+    category: "Restaurante + Pedidos",
+    description:
+      "Web para cafeteria/restaurante con menu digital, carrito simulado, pedidos por WhatsApp, reservas y promos.",
+    highlights: [
+      "Menu online con buscador, filtros y detalle de producto.",
+      "Carrito lateral con modalidad delivery, retiro o local.",
+      "Reservas y pedidos armados para WhatsApp."
+    ],
+    technologies: ["React", "TypeScript", "Vite", "Lucide"],
+    demo: "https://demo-ambar-cafe-brunch.vercel.app",
+    github: "https://github.com/LucasPatricioRey/demo-ambar-cafe-brunch",
+    preview: "/projects/ambar-cafe.webp",
+    featured: false,
+    type: "commercial"
+  },
+  {
+    title: "Vertice Store",
+    eyebrow: "Demo comercial",
+    category: "Venta de ropa",
+    description:
+      "Demo de tienda de indumentaria con catalogo visual, busqueda, carrito, pedidos y experiencia mobile-first.",
+    highlights: [
+      "Catalogo de ropa con navegacion por categorias.",
+      "Carrito y flujo de pedido para compra rapida.",
+      "Identidad visual comercial para marca de indumentaria."
+    ],
+    technologies: ["React", "TypeScript", "CSS", "Vercel"],
+    demo: "https://vertice-store.vercel.app",
+    github: "https://github.com/LucasPatricioRey/demo-vertice-studio-store",
+    preview: "/projects/vertice-store.webp",
+    featured: false,
+    type: "commercial"
+  },
+  {
     title: "Weather App",
     eyebrow: "Consumo de API",
     category: "Frontend Project",
@@ -81,7 +136,8 @@ export const projects = [
     demo: "https://weather-app-liard-rho-65.vercel.app",
     github: "https://github.com/LucasPatricioRey/weatherApp",
     preview: "/projects/weather-app.webp",
-    featured: false
+    featured: false,
+    type: "learning"
   },
   {
     title: "To-Do List",
@@ -97,6 +153,7 @@ export const projects = [
     demo: "https://to-do-list-pink-five-91.vercel.app",
     github: "https://github.com/LucasPatricioRey/to-do-list",
     preview: "/projects/todo-list.webp",
-    featured: false
+    featured: false,
+    type: "learning"
   }
 ];
