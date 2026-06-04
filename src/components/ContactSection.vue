@@ -119,7 +119,7 @@ const copyEmail = async () => {
   color: var(--accent-cold);
   font-size: 0.78rem;
   font-weight: 850;
-  letter-spacing: 0.12em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 
@@ -191,7 +191,7 @@ const copyEmail = async () => {
   font-size: 0.82rem;
   font-weight: 850;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0;
 }
 
 .social-card strong {

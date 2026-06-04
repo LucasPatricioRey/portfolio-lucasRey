@@ -1,141 +1,144 @@
 <script setup>
 import { projects } from "../data/projects";
 
-const showcaseProjects = projects.filter((project) => project.featured).slice(0, 3);
-const primaryProject = showcaseProjects[0];
+const commercialProjects = projects.filter((project) => project.type === "commercial");
+
+const proofPoints = [
+  { value: "3", label: "demos comerciales listas para vender" },
+  { value: "9", label: "proyectos publicados y navegables" },
+  { value: "Full", label: "frontend, backend, datos y deploy" }
+];
 </script>
 
 <template>
   <section id="home" class="hero">
-    <div class="hero-copy">
-      <p class="eyebrow">Disponible para oportunidades trainee y junior</p>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Portfolio vivo de Lucas Rey</p>
 
-      <div class="mobile-profile glass-panel">
-        <picture>
-          <source srcset="/lucas-rey-photo.webp" type="image/webp">
-          <img src="/lucas-rey-photo.png" alt="Retrato de Lucas Rey">
-        </picture>
-        <div>
-          <strong>Lucas Rey</strong>
-          <span>Frontend junior + demos comerciales</span>
+        <h1>
+          Interfaces que se ven fuertes, funcionan y ya estan deployadas.
+        </h1>
+
+        <p class="intro">
+          Frontend junior con base full-stack. Construyo landings comerciales,
+          apps con autenticacion, paneles, APIs, MongoDB y experiencias pensadas
+          para que un cliente real pueda usarlas, probarlas y comprarlas.
+        </p>
+
+        <div class="hero-actions" aria-label="Acciones principales">
+          <a href="#demos" class="btn btn-primary">Ver demos comerciales</a>
+          <a href="#flow" class="btn btn-secondary">Ver flujo de trabajo</a>
+          <a href="/cv-lucas-rey.pdf" class="btn btn-ghost" download>Descargar CV</a>
+        </div>
+
+        <ul class="hero-metrics" aria-label="Resumen rapido">
+          <li v-for="point in proofPoints" :key="point.label">
+            <strong>{{ point.value }}</strong>
+            <span>{{ point.label }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero-portrait">
+        <div class="portrait-stage">
+          <picture>
+            <source srcset="/lucas-rey-photo.webp" type="image/webp">
+            <img src="/lucas-rey-photo.png" alt="Retrato de Lucas Rey" fetchpriority="high">
+          </picture>
+
+          <div class="portrait-caption">
+            <span>Lucas Rey</span>
+            <strong>Frontend junior + producto web</strong>
+          </div>
+
+          <div class="portrait-signal signal-top">
+            <span>Deploy</span>
+            <strong>Vercel + APIs</strong>
+          </div>
+
+          <div class="portrait-signal signal-bottom">
+            <span>Stack</span>
+            <strong>Vue, React, Node, MongoDB</strong>
+          </div>
         </div>
       </div>
-
-      <h1>
-        Frontend junior que ya construye <span>productos full-stack deployados</span>.
-      </h1>
-
-      <p class="intro">
-        Soy Lucas Rey. Hice apps con turnos, e-commerce, dashboards, autenticacion,
-        APIs y MongoDB. Busco una oportunidad junior para aportar en producto desde
-        el primer dia.
-      </p>
-
-      <div class="hero-actions" aria-label="Acciones principales">
-        <a href="#featured-project" class="btn btn-primary">Ver caso REDO</a>
-        <a href="#projects" class="btn btn-secondary">Ver proyectos</a>
-        <a href="/cv-lucas-rey.pdf" class="btn btn-ghost" download>Descargar CV</a>
-      </div>
-
-      <ul class="hero-metrics" aria-label="Pruebas rapidas">
-        <li>
-          <strong>9</strong>
-          <span>proyectos publicados</span>
-        </li>
-        <li>
-          <strong>5</strong>
-          <span>apps full-stack</span>
-        </li>
-        <li>
-          <strong>3</strong>
-          <span>demos comerciales vendibles</span>
-        </li>
-      </ul>
     </div>
 
-    <div class="hero-visual">
-      <div class="showcase-panel glass-panel">
-        <div class="showcase-header">
-          <div>
-            <span>Showroom</span>
-            <strong>Apps publicadas</strong>
-          </div>
-          <a :href="primaryProject.demo" target="_blank" rel="noopener noreferrer">Demo principal</a>
+    <div id="demos" class="hero-showroom" aria-label="Demos comerciales destacadas">
+      <a
+        v-for="project in commercialProjects"
+        :key="project.title"
+        class="demo-tile"
+        :href="project.demo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img :src="project.preview" :alt="`Vista previa de ${project.title}`" loading="lazy">
+        <div class="demo-content">
+          <span>{{ project.category }}</span>
+          <strong>{{ project.title }}</strong>
+          <small>{{ project.description }}</small>
         </div>
-
-        <a
-          class="main-preview"
-          :href="primaryProject.demo"
-          target="_blank"
-          rel="noopener noreferrer"
-          :aria-label="`Abrir demo de ${primaryProject.title}`"
-        >
-          <img
-            :src="primaryProject.preview"
-            :alt="`Vista previa de ${primaryProject.title}`"
-            fetchpriority="high"
-          >
-          <div class="preview-overlay">
-            <span>{{ primaryProject.eyebrow }}</span>
-            <h2>{{ primaryProject.title }}</h2>
-            <p>{{ primaryProject.category }}</p>
-          </div>
-
-          <div class="creator-chip">
-            <picture>
-              <source srcset="/lucas-rey-photo.webp" type="image/webp">
-              <img src="/lucas-rey-photo.png" alt="Retrato de Lucas Rey">
-            </picture>
-            <div>
-              <span>Creado por</span>
-              <strong>Lucas Rey</strong>
-            </div>
-          </div>
-        </a>
-
-        <div class="mini-projects" aria-label="Proyectos destacados">
-          <a
-            v-for="project in showcaseProjects"
-            :key="project.title"
-            class="mini-project"
-            :href="project.demo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img :src="project.preview" :alt="`Miniatura de ${project.title}`" loading="lazy">
-            <span>{{ project.title }}</span>
-            <small>{{ project.category }}</small>
-          </a>
-        </div>
-      </div>
-
-      <div class="profile-strip glass-panel">
-        <picture>
-          <source srcset="/lucas-rey-photo.webp" type="image/webp">
-          <img src="/lucas-rey-photo.png" alt="Retrato de Lucas Rey" loading="lazy">
-        </picture>
-        <div>
-          <strong>Lucas Rey</strong>
-          <p>Frontend junior con base full-stack y demos comerciales listas para mostrar.</p>
-        </div>
-      </div>
+      </a>
     </div>
   </section>
 </template>
 
 <style scoped>
 .hero {
-  min-height: calc(100vh - 112px);
+  width: min(1440px, calc(100% - 32px));
+  min-height: calc(100svh - 24px);
   display: grid;
-  grid-template-columns: minmax(0, 0.96fr) minmax(360px, 1.04fr);
-  align-items: center;
-  gap: 42px;
-  padding-top: 42px;
+  align-content: center;
+  gap: 28px;
+  padding: 34px 0 64px;
+}
+
+.hero-grid {
   position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(380px, 1.08fr);
+  align-items: center;
+  gap: 40px;
+  min-height: min(760px, calc(100svh - 190px));
+  padding: clamp(22px, 3vw, 48px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    linear-gradient(120deg, rgba(255, 107, 53, 0.16), transparent 34%),
+    linear-gradient(240deg, rgba(77, 216, 255, 0.13), transparent 32%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
+    rgba(12, 9, 18, 0.78);
+  box-shadow: 0 36px 120px rgba(0, 0, 0, 0.44);
+}
+
+.hero-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.055) 0 1px, transparent 1px 12vw);
+  transform: translateX(-100%);
+  animation: heroSweep 7.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-grid::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 36%;
+  background:
+    linear-gradient(180deg, transparent, rgba(85, 239, 196, 0.06)),
+    linear-gradient(90deg, rgba(255, 107, 53, 0.12), transparent, rgba(77, 216, 255, 0.12));
+  pointer-events: none;
 }
 
 .hero-copy,
-.hero-visual {
+.hero-portrait {
   position: relative;
   z-index: 1;
 }
@@ -147,61 +150,52 @@ const primaryProject = showcaseProjects[0];
   max-width: 100%;
   margin-bottom: 18px;
   padding: 10px 14px;
-  border: 1px solid rgba(54, 211, 153, 0.2);
+  border: 1px solid rgba(85, 239, 196, 0.26);
   border-radius: 999px;
-  background: rgba(54, 211, 153, 0.09);
-  color: #7ff0c1;
-  font-weight: 800;
+  background: rgba(85, 239, 196, 0.08);
+  color: #c9fff0;
+  font-weight: 850;
 }
 
 .eyebrow::before {
   content: "";
-  width: 9px;
-  height: 9px;
-  flex: 0 0 9px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: #35f08a;
-  box-shadow: 0 0 18px rgba(53, 240, 138, 0.76);
-}
-
-.mobile-profile {
-  display: none;
+  background: var(--accent-green);
+  box-shadow: 0 0 24px rgba(85, 239, 196, 0.75);
 }
 
 h1 {
-  max-width: 13.4ch;
-  margin-bottom: 20px;
-  font-size: clamp(2.85rem, 4.9vw, 4.85rem);
-  line-height: 0.99;
-}
-
-h1 span {
-  color: var(--accent-soft);
+  max-width: 13ch;
+  margin-bottom: 22px;
+  font-size: clamp(3rem, 5.6vw, 6.2rem);
+  line-height: 0.93;
 }
 
 .intro {
-  max-width: 630px;
+  max-width: 650px;
   color: var(--muted);
-  line-height: 1.82;
-  font-size: 1.06rem;
+  line-height: 1.78;
+  font-size: clamp(1rem, 0.35vw + 0.98rem, 1.18rem);
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin: 24px 0 24px;
+  margin: 28px 0 26px;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
+  min-height: 50px;
   padding: 13px 18px;
-  border-radius: 12px;
-  font-weight: 850;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.25s ease;
+  border-radius: 13px;
+  font-weight: 900;
+  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, box-shadow 0.25s ease;
 }
 
 .btn:hover {
@@ -209,19 +203,19 @@ h1 span {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), #ffb15f);
-  color: #081120;
-  box-shadow: 0 18px 42px rgba(255, 122, 24, 0.22);
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  color: #120b08;
+  box-shadow: 0 20px 48px rgba(255, 107, 53, 0.26);
 }
 
 .btn-secondary {
-  background: rgba(93, 214, 255, 0.12);
-  border: 1px solid rgba(93, 214, 255, 0.24);
-  color: #dff8ff;
+  border: 1px solid rgba(77, 216, 255, 0.28);
+  background: rgba(77, 216, 255, 0.1);
+  color: #e4faff;
 }
 
 .btn-ghost {
-  border: 1px solid rgba(168, 180, 200, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: var(--text);
 }
 
@@ -233,18 +227,18 @@ h1 span {
 }
 
 .hero-metrics li {
-  min-height: 92px;
-  padding: 16px;
-  border: 1px solid rgba(168, 180, 200, 0.18);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.045);
+  min-height: 104px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.055);
 }
 
 .hero-metrics strong {
   display: block;
-  margin-bottom: 7px;
+  margin-bottom: 8px;
   color: var(--accent-soft);
-  font-size: 1.55rem;
+  font-size: clamp(1.4rem, 1vw + 1rem, 2rem);
   line-height: 1;
 }
 
@@ -254,218 +248,243 @@ h1 span {
   line-height: 1.35;
 }
 
-.hero-visual {
+.hero-portrait {
+  min-height: 640px;
   display: grid;
-  gap: 16px;
+  place-items: center;
 }
 
-.showcase-panel,
-.profile-strip {
-  border-radius: 24px;
-}
-
-.showcase-panel {
-  padding: 18px;
-  overflow: hidden;
-  background:
-    linear-gradient(135deg, rgba(255, 122, 24, 0.12), transparent 34%),
-    linear-gradient(225deg, rgba(93, 214, 255, 0.12), transparent 36%),
-    rgba(9, 17, 30, 0.9);
-}
-
-.showcase-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 14px;
-}
-
-.showcase-header span {
-  display: block;
-  margin-bottom: 4px;
-  color: var(--accent-cold);
-  font-size: 0.76rem;
-  font-weight: 850;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.showcase-header strong {
-  font-size: 1.05rem;
-}
-
-.showcase-header a {
-  padding: 9px 12px;
-  border-radius: 999px;
-  background: rgba(255, 122, 24, 0.16);
-  color: var(--accent-soft);
-  font-size: 0.78rem;
-  font-weight: 850;
-}
-
-.main-preview {
+.portrait-stage {
   position: relative;
+  width: min(100%, 620px);
+  isolation: isolate;
+  animation: portraitEnter 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.portrait-stage::before,
+.portrait-stage::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  pointer-events: none;
+}
+
+.portrait-stage::before {
+  inset: 8% -6% 10% 8%;
+  border-radius: 30px;
+  background:
+    linear-gradient(135deg, rgba(255, 107, 53, 0.18), transparent),
+    rgba(255, 255, 255, 0.04);
+  transform: rotate(4deg);
+}
+
+.portrait-stage::after {
+  inset: 18% 8% -6% -6%;
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(77, 216, 255, 0.16), transparent),
+    rgba(85, 239, 196, 0.045);
+  transform: rotate(-5deg);
+}
+
+.portrait-stage picture {
   display: block;
   overflow: hidden;
-  border: 1px solid rgba(168, 180, 200, 0.18);
-  border-radius: 18px;
-  aspect-ratio: 16 / 9;
-  background: #111827;
-}
-
-.main-preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease, filter 0.3s ease;
-}
-
-.main-preview:hover img {
-  transform: scale(1.04);
-  filter: saturate(1.08);
-}
-
-.preview-overlay {
-  position: absolute;
-  left: 18px;
-  bottom: 18px;
-  max-width: min(58%, 300px);
-  padding: 14px 16px;
   border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 16px;
-  background: rgba(4, 8, 20, 0.78);
-  backdrop-filter: blur(12px);
+  border-radius: 30px;
+  background: #0f0c14;
+  box-shadow: 0 36px 96px rgba(0, 0, 0, 0.48);
+  transform: rotate(-1.4deg);
 }
 
-.preview-overlay span {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--accent-soft);
-  font-size: 0.72rem;
-  font-weight: 850;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.preview-overlay h2 {
-  margin-bottom: 4px;
-  font-size: 1.7rem;
-}
-
-.preview-overlay p {
-  color: var(--accent-cold);
-  font-weight: 800;
-}
-
-.creator-chip {
-  position: absolute;
-  right: 18px;
-  bottom: 18px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  max-width: 220px;
-  padding: 10px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 18px;
-  background: rgba(4, 8, 20, 0.8);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
-}
-
-.creator-chip img {
-  width: 54px;
-  height: 54px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 14px;
+.portrait-stage img {
+  width: 100%;
+  height: min(70svh, 680px);
+  min-height: 560px;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 16%;
+  filter: saturate(1.06) contrast(1.02);
 }
 
-.creator-chip span {
+.portrait-caption,
+.portrait-signal {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(10, 8, 16, 0.82);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.32);
+}
+
+.portrait-caption {
+  left: -18px;
+  bottom: 28px;
+  max-width: 310px;
+  padding: 18px 20px;
+  border-radius: 20px;
+}
+
+.portrait-caption span,
+.portrait-signal span {
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
   color: var(--accent-cold);
-  font-size: 0.68rem;
-  font-weight: 850;
-  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  font-weight: 900;
   text-transform: uppercase;
 }
 
-.creator-chip strong {
-  font-size: 0.94rem;
+.portrait-caption strong {
+  font-size: clamp(1.2rem, 1.1vw + 1rem, 1.85rem);
+  line-height: 1.08;
 }
 
-.mini-projects {
+.portrait-signal {
+  padding: 13px 15px;
+  border-radius: 16px;
+  animation: floatPanel 4.8s ease-in-out infinite;
+}
+
+.portrait-signal strong {
+  display: block;
+  max-width: 190px;
+  line-height: 1.25;
+}
+
+.signal-top {
+  top: 44px;
+  right: -12px;
+}
+
+.signal-bottom {
+  right: 16px;
+  bottom: 80px;
+  animation-delay: 1.2s;
+}
+
+.hero-showroom {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 14px;
-}
-
-.mini-project {
-  display: grid;
-  grid-template-rows: auto auto 1fr;
-  gap: 7px;
-  min-height: 150px;
-  padding: 10px;
-  border: 1px solid rgba(168, 180, 200, 0.14);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.045);
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.mini-project:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255, 184, 108, 0.32);
-}
-
-.mini-project img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: 11px;
-}
-
-.mini-project span {
-  font-weight: 850;
-}
-
-.mini-project small {
-  color: var(--muted);
-  line-height: 1.35;
-}
-
-.profile-strip {
-  display: flex;
-  align-items: center;
   gap: 14px;
-  padding: 14px;
 }
 
-.profile-strip img {
-  width: 58px;
-  height: 58px;
-  border: 1px solid rgba(168, 180, 200, 0.18);
-  border-radius: 16px;
+.demo-tile {
+  position: relative;
+  min-height: 250px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 22px;
+  background: rgba(16, 12, 22, 0.76);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.demo-tile:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 209, 102, 0.36);
+  box-shadow: 0 34px 86px rgba(0, 0, 0, 0.4);
+}
+
+.demo-tile img {
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
   object-fit: cover;
-  object-position: center 18%;
-  background: rgba(4, 8, 20, 0.8);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease;
 }
 
-.profile-strip strong {
+.demo-tile:hover img {
+  transform: scale(1.06);
+  filter: saturate(1.12);
+}
+
+.demo-tile::after {
+  content: "";
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(180deg, transparent, rgba(7, 6, 11, 0.92));
+  pointer-events: none;
+}
+
+.demo-content {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1;
+}
+
+.demo-content span {
+  display: inline-flex;
+  margin-bottom: 8px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff6dd;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.demo-content strong {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 7px;
+  font-size: clamp(1.3rem, 1vw + 1rem, 1.8rem);
 }
 
-.profile-strip p {
-  color: var(--muted);
-  line-height: 1.5;
+.demo-content small {
+  display: -webkit-box;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
-@media (max-width: 1020px) {
-  .hero {
+@keyframes heroSweep {
+  0%,
+  42% {
+    transform: translateX(-105%);
+    opacity: 0;
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  72%,
+  100% {
+    transform: translateX(105%);
+    opacity: 0;
+  }
+}
+
+@keyframes portraitEnter {
+  from {
+    opacity: 0;
+    transform: translateY(34px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes floatPanel {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@media (max-width: 1120px) {
+  .hero-grid {
     grid-template-columns: 1fr;
     min-height: auto;
   }
@@ -473,105 +492,77 @@ h1 span {
   h1 {
     max-width: 760px;
   }
+
+  .hero-portrait {
+    min-height: auto;
+  }
+
+  .portrait-stage {
+    width: min(100%, 560px);
+  }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 820px) {
   .hero {
-    gap: 28px;
-    padding-top: 22px;
+    width: min(100% - 20px, 1440px);
+    min-height: auto;
+    padding-top: 20px;
   }
 
-  .mobile-profile {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    width: fit-content;
-    max-width: 100%;
-    margin: -2px 0 16px;
-    padding: 10px 12px;
-    border-radius: 18px;
-  }
-
-  .mobile-profile img {
-    width: 46px;
-    height: 46px;
-    border-radius: 13px;
-    object-fit: cover;
-    object-position: center 18%;
-  }
-
-  .mobile-profile strong {
-    display: block;
-    margin-bottom: 3px;
-  }
-
-  .mobile-profile span {
-    color: var(--muted);
-    font-size: 0.84rem;
-  }
-
-  .eyebrow {
-    font-size: 0.9rem;
-    line-height: 1.35;
+  .hero-grid {
+    gap: 26px;
+    padding: 18px;
+    border-radius: 22px;
   }
 
   h1 {
-    font-size: clamp(2.35rem, 12vw, 3.3rem);
+    font-size: clamp(2.65rem, 12.5vw, 4.2rem);
+  }
+
+  .hero-actions,
+  .hero-metrics,
+  .hero-showroom {
+    grid-template-columns: 1fr;
   }
 
   .hero-actions {
     display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .hero-metrics {
-    grid-template-columns: 1fr;
   }
 
   .hero-metrics li {
     min-height: auto;
   }
 
-  .showcase-panel {
-    padding: 14px;
+  .portrait-stage img {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
   }
 
-  .showcase-header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .preview-overlay {
+  .portrait-caption {
     left: 12px;
     right: 12px;
-    bottom: 86px;
+    bottom: 14px;
     max-width: none;
   }
 
-  .preview-overlay h2 {
-    font-size: 1.35rem;
+  .portrait-signal {
+    position: relative;
+    inset: auto;
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 8px;
+    animation: none;
   }
 
-  .creator-chip {
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
-    max-width: none;
+  .signal-bottom {
+    right: auto;
+    bottom: auto;
   }
 
-  .mini-projects {
-    grid-template-columns: 1fr;
-  }
-
-  .mini-project {
-    grid-template-columns: 112px 1fr;
-    grid-template-rows: auto auto;
-    align-items: center;
-    min-height: auto;
-  }
-
-  .mini-project img {
-    grid-row: 1 / span 2;
+  .demo-tile,
+  .demo-tile img {
+    min-height: 230px;
   }
 }
 </style>

@@ -79,8 +79,7 @@ export const projects = [
       "Demo pensada para vender webs a negocios locales."
     ],
     technologies: ["React", "TypeScript", "Vite", "CSS"],
-    demo: "https://github.com/LucasPatricioRey/demo-nova-studio",
-    demoLabel: "Ver repo",
+    demo: "https://demo-nova-studio-ivory.vercel.app",
     github: "https://github.com/LucasPatricioRey/demo-nova-studio",
     preview: "/projects/nova-studio.webp",
     featured: false,
@@ -116,7 +115,7 @@ export const projects = [
       "Identidad visual comercial para marca de indumentaria."
     ],
     technologies: ["React", "TypeScript", "CSS", "Vercel"],
-    demo: "https://vertice-store.vercel.app",
+    demo: "https://demo-vertice-studio-store-frontend.vercel.app",
     github: "https://github.com/LucasPatricioRey/demo-vertice-studio-store",
     preview: "/projects/vertice-store.webp",
     featured: false,

@@ -8,7 +8,10 @@ defineProps({
 </script>
 
 <template>
-  <article class="project-card glass-panel" :class="{ featured: project.featured }">
+  <article
+    class="project-card glass-panel"
+    :class="{ featured: project.featured, commercial: project.type === 'commercial' }"
+  >
     <a
       class="preview-frame"
       :href="project.demo"
@@ -17,7 +20,7 @@ defineProps({
       :aria-label="`Abrir demo de ${project.title}`"
     >
       <span class="preview-badge">
-        {{ project.type === "commercial" ? "Demo comercial" : project.featured ? "Producto" : "Base tecnica" }}
+        {{ project.type === "commercial" ? "Demo comercial" : project.featured ? "Full-stack" : "Base tecnica" }}
       </span>
 
       <img
@@ -59,7 +62,7 @@ defineProps({
 
     <div class="links">
       <a :href="project.demo" target="_blank" rel="noopener noreferrer">
-        {{ project.demoLabel || "Demo" }}
+        Demo
       </a>
       <a
         v-if="project.github !== project.demo"
@@ -82,9 +85,9 @@ defineProps({
   gap: 18px;
   padding: 24px;
   border: 1px solid var(--line);
-  border-radius: 22px;
+  border-radius: 20px;
   overflow: hidden;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
 }
 
 .project-card:hover {
@@ -93,15 +96,22 @@ defineProps({
     rotateX(var(--tilt-x, 0deg))
     rotateY(var(--tilt-y, 0deg))
     translateY(-10px);
-  border-color: rgba(255, 184, 108, 0.38);
+  border-color: rgba(255, 209, 102, 0.38);
   box-shadow: 0 30px 72px rgba(0, 0, 0, 0.36);
+}
+
+.commercial {
+  background:
+    linear-gradient(135deg, rgba(255, 107, 53, 0.12), transparent 34%),
+    linear-gradient(225deg, rgba(255, 209, 102, 0.1), transparent 34%),
+    rgba(16, 12, 22, 0.82);
 }
 
 .featured {
   background:
-    linear-gradient(135deg, rgba(255, 122, 24, 0.12), transparent 36%),
-    linear-gradient(225deg, rgba(93, 214, 255, 0.1), transparent 38%),
-    rgba(10, 18, 32, 0.82);
+    linear-gradient(135deg, rgba(77, 216, 255, 0.09), transparent 36%),
+    linear-gradient(225deg, rgba(85, 239, 196, 0.08), transparent 38%),
+    rgba(16, 12, 22, 0.78);
 }
 
 .project-card::before {
@@ -113,8 +123,8 @@ defineProps({
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.12),
-    rgba(255, 122, 24, 0.22),
-    rgba(93, 214, 255, 0.18)
+    rgba(255, 107, 53, 0.22),
+    rgba(77, 216, 255, 0.18)
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -134,10 +144,14 @@ defineProps({
   position: relative;
   display: block;
   overflow: hidden;
-  border: 1px solid rgba(168, 180, 200, 0.14);
-  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 15px;
   background: rgba(255, 255, 255, 0.04);
   aspect-ratio: 16 / 9;
+}
+
+.commercial .preview-frame {
+  aspect-ratio: 16 / 10;
 }
 
 .preview-badge {
@@ -145,14 +159,13 @@ defineProps({
   top: 12px;
   left: 12px;
   z-index: 2;
-  padding: 8px 11px;
+  padding: 8px 10px;
   border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
-  background: rgba(5, 11, 24, 0.72);
+  border-radius: 12px;
+  background: rgba(10, 8, 16, 0.76);
   color: #f7fbff;
   font-size: 0.68rem;
-  font-weight: 850;
-  letter-spacing: 0.13em;
+  font-weight: 900;
   text-transform: uppercase;
   backdrop-filter: blur(12px);
 }
@@ -174,7 +187,7 @@ defineProps({
   padding: 20px;
   text-align: center;
   background:
-    linear-gradient(135deg, rgba(11, 23, 41, 0.95), rgba(7, 17, 31, 0.9));
+    linear-gradient(135deg, rgba(24, 17, 30, 0.95), rgba(7, 8, 14, 0.9));
 }
 
 .preview-placeholder span {
@@ -186,7 +199,6 @@ defineProps({
 .preview-placeholder small {
   color: var(--muted);
   font-size: 0.88rem;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -200,7 +212,7 @@ defineProps({
   position: absolute;
   inset: auto 0 0;
   height: 55%;
-  background: linear-gradient(180deg, transparent, rgba(4, 8, 20, 0.44));
+  background: linear-gradient(180deg, transparent, rgba(7, 6, 11, 0.52));
   pointer-events: none;
 }
 
@@ -219,11 +231,11 @@ defineProps({
   align-items: center;
   padding: 9px 12px;
   border-radius: 999px;
-  background: rgba(255, 122, 24, 0.92);
-  color: #07111f;
+  background: rgba(255, 209, 102, 0.92);
+  color: #171008;
   font-size: 0.8rem;
-  font-weight: 850;
-  box-shadow: 0 16px 30px rgba(255, 122, 24, 0.28);
+  font-weight: 900;
+  box-shadow: 0 16px 30px rgba(255, 107, 53, 0.24);
 }
 
 .project-card:hover .preview-cta {
@@ -241,19 +253,19 @@ defineProps({
   margin-bottom: 10px;
   color: var(--accent-soft);
   font-size: 0.74rem;
-  font-weight: 850;
-  letter-spacing: 0.12em;
+  font-weight: 900;
   text-transform: uppercase;
 }
 
 h3 {
-  font-size: 1.55rem;
+  font-size: clamp(1.28rem, 0.55vw + 1rem, 1.58rem);
+  line-height: 1.08;
 }
 
 .category {
   color: var(--accent-cold);
   font-size: 0.9rem;
-  font-weight: 850;
+  font-weight: 900;
 }
 
 .description,
@@ -292,19 +304,19 @@ h3 {
 
 .techs span {
   padding: 8px 10px;
-  border: 1px solid rgba(168, 180, 200, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.04);
-  color: #e5eef8;
+  background: rgba(255, 255, 255, 0.045);
+  color: #f1f5fb;
   font-size: 0.86rem;
-  font-weight: 800;
+  font-weight: 850;
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
 
 .project-card:hover .techs span {
   transform: translateY(-2px);
-  border-color: rgba(255, 184, 108, 0.2);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 209, 102, 0.24);
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .links {
@@ -317,20 +329,20 @@ h3 {
 .links a {
   padding: 11px 15px;
   border-radius: 12px;
-  background: linear-gradient(135deg, var(--accent), #ffb15f);
-  color: #081120;
-  font-weight: 850;
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  color: #140c08;
+  font-weight: 900;
   transition: transform 0.2s ease, box-shadow 0.25s ease;
 }
 
 .links a:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px rgba(255, 122, 24, 0.2);
+  box-shadow: 0 14px 28px rgba(255, 107, 53, 0.22);
 }
 
 .secondary-link {
   background: transparent !important;
-  border: 1px solid rgba(168, 180, 200, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: var(--text) !important;
 }
 

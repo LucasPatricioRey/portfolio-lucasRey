@@ -3,6 +3,7 @@ import { onBeforeUnmount, onMounted } from "vue";
 import Navbar from "./components/Navbar.vue";
 import HeroSection from "./components/HeroSection.vue";
 import AboutSection from "./components/AboutSection.vue";
+import FlowSection from "./components/FlowSection.vue";
 import SkillsSection from "./components/SkillsSection.vue";
 import ProjectsSection from "./components/ProjectsSection.vue";
 import ContactSection from "./components/ContactSection.vue";
@@ -37,13 +38,17 @@ const resetPointer = (event) => {
 onMounted(() => {
   const targets = [
     ...document.querySelectorAll(".hero-copy > *"),
-    ...document.querySelectorAll(".hero-visual > *"),
+    ...document.querySelectorAll(".hero-portrait > *"),
+    ...document.querySelectorAll(".hero-showroom > *"),
     ...document.querySelectorAll(".hero-metrics li"),
+    ...document.querySelectorAll(".flow-header > *"),
+    ...document.querySelectorAll(".flow-board"),
+    ...document.querySelectorAll(".flow-step"),
+    ...document.querySelectorAll(".flow-stack span"),
     ...document.querySelectorAll(".section-kicker"),
     ...document.querySelectorAll(".section-title"),
     ...document.querySelectorAll(".section-subtitle"),
     ...document.querySelectorAll(".project-card"),
-    ...document.querySelectorAll(".featured-case > *"),
     ...document.querySelectorAll(".skill-card"),
     ...document.querySelectorAll(".about-card"),
     ...document.querySelectorAll(".metric-card"),
@@ -74,19 +79,19 @@ onMounted(() => {
 
   pointerTargets = [
     ...document.querySelectorAll(".project-card"),
-    ...document.querySelectorAll(".showcase-panel"),
-    ...document.querySelectorAll(".mini-project"),
-    ...document.querySelectorAll(".profile-strip"),
-    ...document.querySelectorAll(".featured-case"),
+    ...document.querySelectorAll(".demo-tile"),
+    ...document.querySelectorAll(".portrait-stage"),
+    ...document.querySelectorAll(".flow-board"),
+    ...document.querySelectorAll(".flow-step"),
     ...document.querySelectorAll(".skill-card"),
     ...document.querySelectorAll(".about-card")
   ];
 
   pointerTargets.forEach((element) => {
     element.classList.add("interactive-tilt");
-    if (element.classList.contains("project-card")) {
+    if (element.classList.contains("project-card") || element.classList.contains("demo-tile")) {
       element.dataset.tiltIntensity = "1.2";
-    } else if (element.classList.contains("showcase-panel")) {
+    } else if (element.classList.contains("portrait-stage") || element.classList.contains("flow-board")) {
       element.dataset.tiltIntensity = "1.1";
     } else {
       element.dataset.tiltIntensity = "0.9";
@@ -114,6 +119,7 @@ onBeforeUnmount(() => {
     <Navbar />
     <main>
       <HeroSection />
+      <FlowSection />
       <AboutSection />
       <SkillsSection />
       <ProjectsSection />

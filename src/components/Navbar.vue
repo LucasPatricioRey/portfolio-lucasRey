@@ -3,7 +3,9 @@
     <a href="#home" class="logo">Lucas<span>Rey</span></a>
 
     <nav>
-      <a href="#about">Sobre mí</a>
+      <a href="#demos">Demos</a>
+      <a href="#flow">Flujo</a>
+      <a href="#about">Sobre mi</a>
       <a href="#skills">Stack</a>
       <a href="#projects">Proyectos</a>
       <a href="#contact">Contacto</a>
@@ -16,54 +18,58 @@
   position: sticky;
   top: 16px;
   z-index: 20;
-  width: min(1180px, calc(100% - 48px));
+  width: min(1320px, calc(100% - 48px));
   margin: 16px auto 0;
-  padding: 16px 20px;
+  padding: 12px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 22px;
-  background: rgba(5, 12, 23, 0.7);
-  border: 1px solid rgba(168, 180, 200, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 18px;
+  background: rgba(10, 7, 14, 0.72);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
   backdrop-filter: blur(18px);
 }
 
 .logo {
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 .logo span {
-  color: var(--accent-soft);
+  color: var(--accent-cold);
 }
 
 nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 7px;
 }
 
 nav a {
-  padding: 10px 14px;
-  border-radius: 999px;
+  padding: 9px 12px;
+  border-radius: 12px;
   color: var(--muted);
-  font-size: 0.95rem;
-  font-weight: 700;
-  transition: 0.2s ease;
+  font-size: 0.94rem;
+  font-weight: 800;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
 nav a:hover {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.075);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
   .navbar {
     top: 8px;
-    width: min(100% - 20px, 1180px);
+    width: min(100% - 20px, 1320px);
     padding: 10px 12px;
     gap: 10px;
-    border-radius: 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 16px;
   }
 
   .logo {
@@ -72,9 +78,10 @@ nav a:hover {
   }
 
   nav {
+    width: 100%;
     flex: 1 1 auto;
     flex-wrap: nowrap;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 4px;
     overflow-x: auto;
     scrollbar-width: none;
@@ -94,7 +101,7 @@ nav a:hover {
 
 @media (max-width: 420px) {
   .navbar {
-    width: min(100% - 16px, 1180px);
+    width: min(100% - 16px, 1320px);
     gap: 8px;
   }
 
@@ -103,7 +110,7 @@ nav a:hover {
   }
 
   nav {
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 2px;
   }
 
